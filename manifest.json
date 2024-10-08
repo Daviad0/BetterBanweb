@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "Better Banweb",
+    "version": "0.1",
+  
+    "description": "Makes the Banweb application for Michigan Tech students just... better!",
+  
+    // "icons": {
+    //   "48": "icons/border-48.png"
+    // },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://banweb.mtu.edu/*", "*://www.banweb.mtu.edu/*", "*://sso.mtu.edu/*"],
+        "js": ["main.js"]
+      }
+    ]
+  }
+  
