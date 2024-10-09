@@ -1,0 +1,49 @@
+/*
+
+Base Colors:
+
+- Main MTU Color: #ffcd00
+- Main MTU Black: #000000
+- Light MTU Color: #f0fcfc
+
+*/
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../resources/Lato-Regular.ttf');
+}
+
+html{
+    background-color: #f0fcfc;
+    margin: 0;
+    border-radius: 10px;
+}
+
+*{
+    font-family: 'Lato', sans-serif;
+}
+
+.settings{
+    margin: 10px 20px;
+    box-sizing: border-box;
+}
+
+.settings-line{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.container{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.container-inner-border{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    border: 4px solid #f0fcfc;
+}
