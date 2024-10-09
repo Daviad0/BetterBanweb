@@ -6,7 +6,7 @@
     "description": "Makes the Banweb application for Michigan Tech students just... better!",
   
     // "icons": {
-    //   "48": "icons/border-48.png"
+    //   "48": "BetterBanweb.png"
     // },
   
     "content_scripts": [
