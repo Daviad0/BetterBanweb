@@ -16,6 +16,10 @@
         "default_title": "Better Banweb",
         "default_popup": "popup/home.html"
     },
+    "web_accessible_resources": [
+        "popup/home.css",
+        "resources/fonts/Lato-Regular.ttf"
+    ],
     "content_scripts": [
       {
         "matches": ["*://banweb.mtu.edu/*", "*://www.banweb.mtu.edu/*"],
