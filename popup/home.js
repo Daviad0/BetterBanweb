@@ -1,6 +1,7 @@
 // store all of the settings
 let settings = {
     "general_theme-enabled": null
+    ,"save_Perfs_button": null
 }
 
 async function changeSetting(context){
