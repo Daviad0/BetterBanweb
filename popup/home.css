@@ -20,6 +20,10 @@ html{
     border-radius: 10px;
 }
 
+span{
+    display:block;
+}
+
 *{
     font-family: 'Lato', sans-serif;
 }
@@ -72,7 +76,7 @@ html{
     padding: 0px 10px 10px 10px;
     border: 4px solid #ffcd00;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-
+    text-align: center;
 }
 
 .container-outer-border .header{
@@ -87,6 +91,7 @@ html{
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    text-align:center;
     
 }
 

@@ -7,33 +7,24 @@
         <span class="text-center text-bold text-huge">Better Banweb</span>
         <span class="text-center text-medium">Adjust the settings for the Better Banweb Extension below!</span>
 
-        <div class="settings container">
-            <div class="container-inner-border">
-                <div class="settings-line">
-                    <div>
-                        <p>Dark Mode</p>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="dark-mode" onchange="changeSetting('dark-mode')" />
-                    </div>
-                </div>
-            </div>
-            
-        </div>
+        <br />
         <div class="container-outer-border">
             <div class="header">
-                <span>Hello</span>
+                <span>General Settings</span>
             </div>
             <div class="settings-line">
                 <div>
-                    <span>Hello</span>
+                    <span>Enable Theme</span>
                 </div>
                 <div>
-                    <input type="checkbox" id="dark-mode" onchange="changeSetting('dark-mode')" />
+                    <input type="checkbox" id="general_theme-enabled" class="setting" />
                 </div>
             </div>
         </div>
             
+        <script src="../js/getPrefs.js"></script>
+        <script src="../js/savePrefs.js"></script>
         <script src="home.js"></script>
+        
     </body>
 </html>
