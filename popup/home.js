@@ -1,7 +1,7 @@
 // store all of the settings
 let settings = {
     "general_theme-enabled": null
-    ,"save_Perfs_button": null
+    ,"save_data-button": null
 }
 
 async function changeSetting(context){
@@ -72,3 +72,53 @@ document.onreadystatechange = function(){
     }
 }
 
+function showSuccessMessage() {
+    const successMessage = document.createElement('div');
+    successMessage.textContent = 'Preferences saved successfully!';
+    successMessage.style.position = 'fixed';
+    successMessage.style.bottom = '20px';
+    successMessage.style.right = '20px';
+    successMessage.style.padding = '10px';
+    successMessage.style.backgroundColor = '#4CAF50'; // Green background
+    successMessage.style.color = 'white';
+    successMessage.style.borderRadius = '5px';
+    successMessage.style.zIndex = '1000'; // Ensure it's on top of other elements
+
+    document.body.appendChild(successMessage);
+
+    // Remove the message after 3 seconds
+    setTimeout(() => {
+        successMessage.remove();
+    }, 3000);
+}
+
+// Function to load data from local storage
+function loadData(key) {
+    return browser.storage.local.get(key).then(data => {
+        return data[key]; // Return the stored value
+    }).catch(error => {
+        console.error(`Error loading data: ${error}`);
+    });
+}
+
+// Add event listener to the Save button
+document.getElementById('save_data-button').addEventListener('click', () => {
+    // Get the value of the checkbox
+    const isThemeEnabled = document.getElementById('general_theme-enabled').checked;
+
+    // Save preferences using the saveData function
+    saveData('themeEnabled', isThemeEnabled).then(() => {
+        // Show the success message after data is saved
+        showSuccessMessage();
+    }).catch(error => {
+        console.error('Failed to save preferences:', error);
+    });
+});
+
+// Add event listener to the Load button
+document.getElementById('get_data-button').addEventListener('click', () => {
+    loadData('themeEnabled').then(value => {
+        // Set the checkbox state based on loaded value
+        document.getElementById('general_theme-enabled').checked = value || false;
+    });
+});
