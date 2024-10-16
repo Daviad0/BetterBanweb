@@ -20,6 +20,7 @@ async function changeSetting(context){
     }
 
     await saveData(setting, value);
+    showSuccessMessage();
 }
 
 function updateControls(){
@@ -101,24 +102,3 @@ function loadData(key) {
     });
 }
 
-// Add event listener to the Save button
-document.getElementById('save_data-button').addEventListener('click', () => {
-    // Get the value of the checkbox
-    const isThemeEnabled = document.getElementById('general_theme-enabled').checked;
-
-    // Save preferences using the saveData function
-    saveData('themeEnabled', isThemeEnabled).then(() => {
-        // Show the success message after data is saved
-        showSuccessMessage();
-    }).catch(error => {
-        console.error('Failed to save preferences:', error);
-    });
-});
-
-// Add event listener to the Load button
-document.getElementById('get_data-button').addEventListener('click', () => {
-    loadData('themeEnabled').then(value => {
-        // Set the checkbox state based on loaded value
-        document.getElementById('general_theme-enabled').checked = value || false;
-    });
-});

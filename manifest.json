@@ -28,7 +28,8 @@
       },
         {
         "matches": ["*://*.sso.mtu.edu/*"],
-         "js": ["SSOLogin.js"]
+         "js": ["js/SSOSetup.js"],
+         "css": ["css/sso.css"]
       }
     ]
   }
