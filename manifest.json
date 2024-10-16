@@ -1,23 +1,29 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Better Banweb",
   "version": "0.1",
   "description": "Makes the Banweb application for Michigan Tech students just... better!",
   "icons": {
-    "48": "BetterBanweb.png"
+    "48": "Icons/BetterBanweb.png"
   },
   "permissions": [
     "activeTab",
     "storage"
   ],
-  "browser_action": {
+  "action": {
     "default_icon": "resources/images/testicon.png",
     "default_title": "Better Banweb",
     "default_popup": "popup/home.html"
   },
   "web_accessible_resources": [
-    "popup/home.css",
-    "resources/fonts/Lato-Regular.ttf"
+    {
+      "matches": [],
+      "extension_ids": [],
+      "resources": [
+        "popup/home.css",
+        "resources/fonts/Lato-Regular.ttf"
+      ]
+    }
   ],
   "content_scripts": [
     {
@@ -26,8 +32,8 @@
         "*://www.banweb.mtu.edu/*"
       ],
       "js": [
-        "js/savePrefs.js",
-        "js/getPrefs.js",
+        "js/saveData.js",
+        "js/getData.js",
         "js/main.js"
       ],
       "css": [
@@ -39,7 +45,7 @@
         "*://*.sso.mtu.edu/*"
       ],
       "js": [
-        "SSOLogin.js"
+        "js/SSOLogin.js"
       ]
     }
   ]
