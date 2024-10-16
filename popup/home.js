@@ -1,9 +1,10 @@
-// store all of the settings
+// Store all of the settings
 let settings = {
     "general_theme-enabled": null,
     "general_dark-mode": null
 }
 
+// Define functions
 async function changeSetting(context){
     let setting = context.id;
     let type = context.type;

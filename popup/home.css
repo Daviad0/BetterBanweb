@@ -10,7 +10,8 @@ Base Colors:
 
 @font-face {
     font-family: 'Lato';
-    src: url('moz-extension://__MSG_@@extension_id__/resources/fonts/Lato-Regular.ttf');
+    src: url('moz-extension://__MSG_@@extension_id__/resources/fonts/Lato-Regular.ttf'),
+    url('chrome-extension://__MSG_@@extension_id__/resources/fonts/Lato-Regular.ttf');
 }
 
 body{

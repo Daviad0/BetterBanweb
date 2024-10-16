@@ -1,36 +1,59 @@
 {
-    "manifest_version": 2,
-    "name": "Better Banweb",
-    "version": "0.1",
-  
-    "description": "Makes the Banweb application for Michigan Tech students just... better!",
-  
-    "icons": {
-        "48": "BetterBanweb.png"
-    },
-  
-    "permissions": ["activeTab", "storage"],
-
-    "browser_action": {
-        "default_icon": "resources/images/testicon.png",
-        "default_title": "Better Banweb",
-        "default_popup": "popup/home.html"
-    },
-    "web_accessible_resources": [
+  "manifest_version": 3,
+  "name": "Better Banweb",
+  "version": "0.1",
+  "description": "Makes the Banweb application for Michigan Tech students just... better!",
+  "icons": {
+    "48": "Icons/BetterBanweb.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_icon": "resources/images/testicon.png",
+    "default_title": "Better Banweb",
+    "default_popup": "popup/home.html"
+  },
+  "web_accessible_resources": [
+    {
+      "matches": [],
+      "extension_ids": [],
+      "resources": [
         "popup/home.css",
         "resources/fonts/Lato-Regular.ttf"
-    ],
-    "content_scripts": [
-      {
-        "matches": ["*://banweb.mtu.edu/*", "*://www.banweb.mtu.edu/*"],
-        "js": ["js/savePrefs.js", "js/getPrefs.js","js/main.js"],
-        "css": ["css/base.css"]
-      },
-        {
-        "matches": ["*://*.sso.mtu.edu/*"],
-         "js": ["js/SSOSetup.js"],
-         "css": ["css/sso.css"]
-      }
-    ]
-  }
-  
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://banweb.mtu.edu/*",
+        "*://www.banweb.mtu.edu/*"
+      ],
+      "js": [
+        "js/saveData.js",
+        "js/getData.js",
+        "js/main.js"
+      ],
+      "css": [
+        "css/base.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.sso.mtu.edu/*"
+      ],
+      "js": [
+        "js/SSOLogin.js",
+        "js/SSOSetup.js"
+      ],
+      "css": [
+        "css/sso.css"
+      ]
+    }
+  ]
+}

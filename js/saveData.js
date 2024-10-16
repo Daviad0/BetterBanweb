@@ -4,7 +4,7 @@ function saveData(key, value) {
   let prom = new Promise((resolve, reject) => {
     const data = {};
     data[key] = value;
-    browser.storage.local.set(data).then(() => {
+    chrome.storage.local.set(data).then(() => {
       console.log(`Data saved: ${key} = ${value}`);
       resolve();
     }).catch(error => {

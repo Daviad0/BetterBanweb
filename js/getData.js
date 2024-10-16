@@ -2,7 +2,7 @@
   function getData(key) {
 
     let prom = new Promise((resolve, reject) => {
-      browser.storage.local.get(key).then(result => {
+      chrome.storage.local.get(key).then(result => {
         console.log(`Retrieved data: ${key} = ${result[key]}`);
         resolve(result[key]);
       }).catch(error => {
@@ -13,3 +13,4 @@
 
     return prom;
   }
+  
