@@ -1,7 +1,7 @@
 // store all of the settings
 let settings = {
-    "general_theme-enabled": null
-    ,"save_data-button": null
+    "general_theme-enabled": null,
+    "general_dark-mode": null
 }
 
 async function changeSetting(context){
@@ -54,8 +54,8 @@ async function initialGetSettings(){
     updateControls();
 }
 
-Array.from(document.querySelectorAll("setting")).forEach(input => {
-    if(input.type === "checkbox"){
+Array.from(document.querySelectorAll(".setting")).forEach(input => {
+    if(input.type == "checkbox"){
         input.addEventListener("click", function(){
             changeSetting(this);
         });
