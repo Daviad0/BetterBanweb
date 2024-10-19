@@ -217,3 +217,78 @@ span{
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
+#pagebody{
+    display: flex;
+}
+
+#navigationcontrol{
+    display: inline-flex;
+    justify-content: left;
+}
+
+#welcomemessage img{
+    height: 100px;
+}
+
+.menucontainer{
+    width: unset !important;
+}
+
+.menucontainer .menuitemseparator{
+    display:none;
+}
+
+#menuTrackInst{
+    display: block !important;
+    text-align: left;
+    width: unset !important;
+}
+
+#menuTrackInst .menuitem{
+    float: unset !important;
+    display: block;
+    margin: 10px;
+}
+
+.navArrowLeft{
+    display: none;
+}
+
+.navArrowRight{
+    display: none;
+}
+
+.menuitem button{
+    text-align: left;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: #ffcd00;
+    padding: 0px 20px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    width: unset;
+}
+
+.menuitem .menu{
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuitem .menu div{
+    background: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menuitem .menu div span{
+    background: none;
+    margin: 0;
+    padding: 0;
+}

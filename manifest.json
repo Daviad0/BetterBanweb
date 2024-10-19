@@ -17,11 +17,12 @@
   },
   "web_accessible_resources": [
     {
-      "matches": [],
+      "matches": ["*://banweb.mtu.edu/*", "*://www.banweb.mtu.edu/*", "*://*.sso.mtu.edu/*"],
       "extension_ids": [],
       "resources": [
         "popup/home.css",
-        "resources/fonts/Lato-Regular.ttf"
+        "resources/fonts/Lato-Regular.ttf",
+        "resources/images/MTU_LOGO.png"
       ]
     }
   ],
