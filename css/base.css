@@ -8,6 +8,7 @@ Base Colors:
 
 */
 
+
 @font-face {
     font-family: 'Lato';
     src: url('moz-extension://__MSG_@@extension_id__/resources/fonts/Lato-Regular.ttf');
@@ -225,6 +226,7 @@ span{
 #navigationcontrol{
     display: inline-flex;
     justify-content: left;
+    margin-top: 20px;
 }
 
 #welcomemessage img{
@@ -291,4 +293,18 @@ span{
     background: none;
     margin: 0;
     padding: 0;
+}
+
+.menuitem .descriptionText{
+    display: none;
+}
+
+#crumb{
+    display:none;
+}
+
+.datadisplaytable .ddheader{
+    margin: 4px !important;
+    padding: 10px !important;
+    border-radius: 10px;
 }

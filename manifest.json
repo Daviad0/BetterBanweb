@@ -38,7 +38,8 @@
       "js": [
         "js/saveData.js",
         "js/getData.js",
-        "js/main.js"
+        "js/main.js",
+        "js/pageLoadOverride.js"
       ],
       "css": [
         "css/base.css"

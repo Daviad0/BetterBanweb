@@ -72,3 +72,30 @@ Array.from(document.querySelectorAll('#login label')).forEach(label => {
     label.innerHTML = `<span>${formatted}</span>`;
 });
 
+document.getElementById("username").addEventListener('change', function(){
+    this.classList.remove('error');
+});
+
+document.getElementById("password").addEventListener('change', function(){
+    this.classList.remove('error');
+});
+
+let errorMessage = document.querySelector('form .alert-danger');
+if(errorMessage){
+    // move to base of page, but remove from original location
+    errorMessage.remove();
+    document.body.append(errorMessage);
+
+    // check to see what the error message is
+
+    let message = errorMessage.textContent;
+    message = message.toLowerCase();
+
+    if(message.includes("password")){
+        document.getElementById("password").classList.add('error');
+    }
+    if(message.includes("username")){
+        document.getElementById("username").classList.add('error');
+    }
+}
+

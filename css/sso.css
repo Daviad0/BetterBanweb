@@ -41,6 +41,12 @@ Base Colors:
     padding: 10px;
     box-sizing: border-box !important;
     margin: 10px 0px;
+    transition: border 0.3s ease-in-out;
+    margin-top:5px;
+}
+
+#login input.error{
+    border: 2px solid red;
 }
 
 #login label{
@@ -48,6 +54,7 @@ Base Colors:
     font-weight: bold;
     text-align: left;
     width: 100% !important;
+    margin-top: 20px;
 }
 
 #login [type="submit"]{
@@ -87,10 +94,13 @@ Base Colors:
     border-radius: 10px;
 }
 
-.alert-danger{
-    margin-top: 20px !important;
-    margin-bottom: 20px !important;
-    border-radius: 10px !important;
+.alert.alert-danger{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 10px 10px 0px 0px;
 }
 
 *{
@@ -298,4 +308,13 @@ span{
 .logo-container img{
     margin: 0px 20px;
     height: 100px;
+}
+
+.card{
+    background-color: white !important;
+    border-radius: 20px !important;
+    padding: 0px 10px 10px 10px !important;
+    border: 8px solid #ffcd00;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
