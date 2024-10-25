@@ -8,6 +8,15 @@ Base Colors:
 
 */
 
+:root{
+    --mtu-color: #ffcd00;
+    --mtu-black: #000000;
+    --mtu-light: #f0fcfc;
+    --mtu-dark-background: #242424;
+    --mtu-dark-text: #ffffff;
+    --mtu-dark-color: #4a4a4a;
+}
+
 
 @font-face {
     font-family: 'Lato';
@@ -27,7 +36,7 @@ Base Colors:
 }
 
 #searchField{
-    border: 4px solid #ffcd00;
+    border: 4px solid var(--mtu-color);
     border-radius: 10px;
 }
 
@@ -36,7 +45,7 @@ Base Colors:
 }
 
 body{
-    background-color: #faffff;
+    background-color: var(--mtu-light);
     
     margin: 0;
     padding: 20px;
@@ -44,7 +53,7 @@ body{
 }
 
 body.dark{
-    background-color: #242424;
+    background-color: var(--mtu-dark-background);
     color: white;
 }
 
@@ -99,25 +108,25 @@ span{
 }
 
 .dark .container{
-    background-color: #242424;
+    background-color: var(--mtu-dark-background);
 }
 
 .container-outer-border{
     background-color: white;
     border-radius: 10px;
     padding: 0px 10px 10px 10px;
-    border: 4px solid #ffcd00;
+    border: 4px solid var(--mtu-color);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .dark .container-outer-border{
-    background-color: #242424;
-    border: 4px solid #4a4a4a;
+    background-color: var(--mtu-dark-background);
+    border: 4px solid var(--mtu-dark-color);
 }
 
 .container-outer-border .header{
-    background-color: #ffcd00;
+    background-color: var(--mtu-color);
     border-radius: 0px 0px 10px 10px;
     color: white;
     padding: 4px 20px;
@@ -133,7 +142,7 @@ span{
 }
 
 .dark .container-outer-border .header{
-    background-color: #4a4a4a;
+    background-color: var(--mtu-dark-color);
     color: white;
 }
 
@@ -141,12 +150,12 @@ span{
     background-color: white;
     border-radius: 10px;
     padding: 10px;
-    border: 4px solid #f0fcfc;
+    border: 4px solid var(--mtu-light);
 }
 
 .dark .container-inner-border{
-    background-color: #242424;
-    border: 4px solid #4a4a4a;
+    background-color: var(--mtu-dark-background);
+    border: 4px solid var(--mtu-dark-color);
 }
 
 
@@ -188,11 +197,11 @@ span{
   
   /* When the checkbox is checked, add a blue background */
   .checkbox-container input:checked ~ .checkmark {
-    background-color: #ffcd00;
+    background-color: var(--mtu-color);
   }
   
   .dark .checkbox-container input:checked ~ .checkmark {
-    background-color: #4a4a4a;
+    background-color: var(--mtu-dark-color);
   }
   /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
@@ -265,7 +274,7 @@ span{
     text-align: left;
     border-radius: 10px;
     margin: 10px;
-    background-color: #ffcd00;
+    background-color: var(--mtu-color);
     padding: 0px 20px;
     color: white;
     font-size: 16px;
@@ -307,4 +316,22 @@ span{
     margin: 4px !important;
     padding: 10px !important;
     border-radius: 10px;
+}
+
+.htmlButtonLevel2-3{
+    margin: 5px;
+    border-radius: 10px;
+
+}
+
+#contentBelt{
+    width: 80% !important;
+}
+
+#contentSubHolder{
+    position: relative;
+    top: 0px;
+    padding: 25px;
+    overflow: hidden;
+    width: 95%;
 }
