@@ -321,7 +321,24 @@ span{
 .htmlButtonLevel2-3{
     margin: 5px;
     border-radius: 10px;
+    text-align: center !important;
+    border: 4px solid black;
+    padding: 0px;
+    
+}
 
+.htmlButtonLevel2-3 h3{
+    padding: 10px;
+    background: unset !important;
+    background-color: black !important;
+    color: white !important;
+    text-align: center !important;
+    
+}
+.htmlButtonLevel2-3 p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 #contentBelt{
@@ -334,4 +351,21 @@ span{
     padding: 25px;
     overflow: hidden;
     width: 95%;
+}
+
+#level3Container{
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#level3Container li a{
+    border-radius: 10px;
+}
+
+#level3Container h3{
+    background: none !important;
+}
+#level3Container h3:hover{
+    background: none !important;
 }
