@@ -39,7 +39,8 @@
         "js/saveData.js",
         "js/getData.js",
         "js/main.js",
-        "js/pageLoadOverride.js"
+        "js/pageLoadOverride.js",
+        "js/cookieHandler.js"
       ],
       "css": [
         "css/base.css"
