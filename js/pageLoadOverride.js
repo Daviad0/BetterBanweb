@@ -1,5 +1,10 @@
 let loadLock = false;
 let showing = "contentHolder";
+// all of the elements that have an expansion to them
+let avoidRemoveClickEvents = [
+    'bmenu--P_RegMnu___UID0',
+    'bmenu--P_AdminMnu___UID1'
+]
 
 function loadPageWithCookies(url){
     // get contentHolder content of loaded page and set it to the contentHolder of the current page
@@ -63,6 +68,19 @@ function switchContent(view){
 
 function stripEventsFromButtons(){
     Array.from(document.getElementsByClassName("htmlButtonLevel2-3")).forEach((orig_table_elem) => {
+        
+        if(avoidRemoveClickEvents.includes(orig_table_elem.id)){
+
+            // create iframe with svg src
+            let iframe = document.createElement("iframe");
+            iframe.src = `${browser.runtime.getURL("resources/images/arrow_drop_down.svg")}`;
+
+            orig_table_elem.querySelector("p").remove();
+            orig_table_elem.append(iframe);
+
+            return;
+        }
+        
         // replace the element removing all event listeners
         
         var new_table_elem = orig_table_elem.cloneNode(true);
@@ -119,6 +137,7 @@ function setup(){
 Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButton) => {
     baseButton.addEventListener('click', function (e){
         setTimeout(stripEventsFromButtons, 1000);
+        switchContent("base");
     });
 });
 

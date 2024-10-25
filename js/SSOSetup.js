@@ -33,6 +33,8 @@ logoDiv.innerHTML = `
 document.getElementById("login").parentElement.prepend(logoDiv);
 
 
+
+
 let questionElem = document.querySelector('.fa-question-circle');
 // delete parent div of question mark
 questionElem.parentElement.remove();
@@ -99,3 +101,4 @@ if(errorMessage){
     }
 }
 
+document.querySelector('input[type="submit"]').value = "Submit Login";

@@ -22,7 +22,8 @@
       "resources": [
         "popup/home.css",
         "resources/fonts/Lato-Regular.ttf",
-        "resources/images/MTU_LOGO.png"
+        "resources/images/MTU_LOGO.png",
+        "resources/images/arrow_drop_down.svg"
       ]
     }
   ],
