@@ -50,6 +50,7 @@ body{
     margin: 0;
     padding: 20px;
     border-radius: 10px;
+    font-family: 'Lato', sans-serif;
 }
 
 body.dark{
@@ -100,6 +101,13 @@ span{
     margin: 10px 0;
 }
 
+.button-container {
+    display: inline-block;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text within the container */
+}
+
 .container{
     background-color: white;
     border-radius: 10px;
@@ -111,13 +119,16 @@ span{
     background-color: var(--mtu-dark-background);
 }
 
-.container-outer-border{
+.container-outer-border {
     background-color: white;
     border-radius: 10px;
-    padding: 0px 10px 10px 10px;
+    padding: 10px;
     border: 4px solid var(--mtu-color);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 100%; 
+    max-width: 600px; 
+    margin: 20px;
 }
 
 .dark .container-outer-border{
@@ -233,9 +244,10 @@ span{
 }
 
 #navigationcontrol{
-    display: inline-flex;
-    justify-content: left;
-    margin-top: 20px;
+    display: inline-block;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 #welcomemessage img{
@@ -282,6 +294,7 @@ span{
     cursor: pointer;
     display: inline-block;
     width: unset;
+    border: 2px solid black;
 }
 
 .menuitem .menu{
@@ -312,38 +325,46 @@ span{
     display:none;
 }
 
+
 .datadisplaytable .ddheader{
     margin: 4px !important;
     padding: 10px !important;
     border-radius: 10px;
 }
 
-.htmlButtonLevel2-3{
-    margin: 5px;
-    border-radius: 10px;
+.htmlButtonLevel2-3 {
+    margin: 5px 5px;
     text-align: center !important;
-    border: 4px solid black;
-    padding: 0px;
-    
+    padding: 10px;
+    box-sizing: border-box;
+    border: 4px solid var(--mtu-black); /* Apply border here */
+    border-radius: 25px; /* Apply border-radius here */
+    overflow: hidden;
 }
 
-.htmlButtonLevel2-3 h3{
-    padding: 10px;
-    background: unset !important;
+.htmlButtonLevel2-3 > div {
+    display: contents; /* Keep this */
+    height: 177px;
+    align-items: center;
+}
+
+.htmlButtonLevel2-3 h3 {
+    padding: 5px 10px;
     background-color: black !important;
     color: white !important;
     text-align: center !important;
-    
-}
-.htmlButtonLevel2-3 p{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
+    border-radius: 10px; /* Rounded corners for the header */
+    margin: 0; /* Fix margin syntax */
 }
 
-#contentBelt{
-    width: 80% !important;
+.htmlButtonLevel2-3 p {
+    margin-top: 10px 0 0;
+    text-align: center;
 }
+#contentBelt{
+    width: 90% !important;
+}
+
 
 #contentSubHolder{
     position: relative;
@@ -353,9 +374,10 @@ span{
     width: 95%;
 }
 
+
 #level3Container{
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 4px;
     margin: 10px;
 }
 
@@ -368,4 +390,8 @@ span{
 }
 #level3Container h3:hover{
     background: none !important;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
