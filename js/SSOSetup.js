@@ -101,4 +101,4 @@ if(errorMessage){
     }
 }
 
-document.querySelector('input[type="submit"]').value = "Submit Login";
+document.querySelector('input[type="submit"]').value = "Login";
