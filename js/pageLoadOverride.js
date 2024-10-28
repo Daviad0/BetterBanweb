@@ -119,6 +119,24 @@ function stripEventsFromButtons() {
         const buttonText = orig_table_elem.querySelector("h3"); // Button name
         const subtext = orig_table_elem.querySelector("p"); // Subtext
 
+        if(avoidRemoveClickEvents.includes(orig_table_elem.id)){
+            // do not remove click events from these buttons
+            // remove hover events
+
+            // replace paragraph element with an iframe
+            let iframe = document.createElement('iframe');
+            iframe.src = `${browser.runtime.getURL("resources/images/arrow_drop_down.svg")}`
+            
+            let paragraph = orig_table_elem.querySelector('p');
+            paragraph.remove();
+
+            orig_table_elem.appendChild(iframe);
+
+
+            return;
+            
+        }
+
         // Create a new button element
         const new_table_elem = document.createElement("div");
         new_table_elem.className = "htmlButtonLevel2-3"; // Copy the class for styling
@@ -138,11 +156,12 @@ function stripEventsFromButtons() {
             new_table_elem.appendChild(newSubtext);
         }
 
-        // Clear the original element's content before replacing it
-        orig_table_elem.innerHTML = ''; // Clear existing content
-        orig_table_elem.appendChild(new_table_elem); // Append the new button
+        // replace the original table element with the new one
+        orig_table_elem.parentNode.replaceChild(new_table_elem, orig_table_elem);
 
 
+
+        
 
 
       // Map button IDs to URLs
@@ -164,11 +183,12 @@ function stripEventsFromButtons() {
     };
 
     const url = urlMap[new_table_elem.id];
-    if (url) {
-        new_table_elem.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            loadPageWithCookies(url);
+    console.log("URL: " + new_table_elem.id);
+        if (url) {
+            new_table_elem.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                loadPageWithCookies(url);
             });
         }
     });
@@ -187,17 +207,6 @@ function setup(){
     contentHolder.parentNode.insertBefore(contentSubHolder, contentHolder.nextSibling);
 
   // Add event listeners to buttons for themed pages
-  for (const [name, url] of Object.entries(themedURLs)) {
-    const buttonId = buttonMapping[name];
-    const button = document.getElementById(buttonId); // Assuming buttons have IDs matching their names
-    if (button) {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            loadPageWithCookies(url);
-            });
-      }
-    }
     stripEventsFromButtons();
 
 }
@@ -210,4 +219,4 @@ Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButto
 });
 
 
-setTimeout(setup, 3000);
+setTimeout(setup, 1000);

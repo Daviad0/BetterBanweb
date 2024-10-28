@@ -33,8 +33,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://banweb.mtu.edu/*GenMenu*",
-        "*://www.banweb.mtu.edu/*GenMenu*"
+        "*://banweb.mtu.edu/*",
+        "*://www.banweb.mtu.edu/*"
       ],
       "js": [
         "js/saveData.js",
