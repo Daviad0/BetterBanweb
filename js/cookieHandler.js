@@ -34,3 +34,6 @@ function setCookie(name, value, expireDate=null) {
 	document.cookie = name + "=" + value.toString() + expires + ";path=/";
 }
 
+function deleteCookie(name) {
+	setCookie(name, "");
+}
