@@ -345,6 +345,7 @@ span{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
 .htmlButtonLevel2-3 > div {
@@ -359,6 +360,7 @@ span{
     padding: 5px 10px;
     background-color: black !important;
     color: white !important;
+    width: 100%;
     text-align: center !important;
     border-radius: 10px; /* Rounded corners for the header */
     margin: 0; /* Fix margin syntax */
@@ -443,3 +445,10 @@ span{
 #confirmationBase{
     height: unset !important;
 }
+
+iframe{
+    border: none !important;
+    width: 100px;
+    height: 100px;
+}
+

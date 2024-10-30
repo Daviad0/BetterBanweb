@@ -118,7 +118,7 @@ function stripEventsFromButtons() {
         // Preserve the original button content and subtext
         const buttonText = orig_table_elem.querySelector("h3"); // Button name
         const subtext = orig_table_elem.querySelector("p"); // Subtext
-        const browser = (window.browser ?? window.chrome);
+        // const browser = (browser ?? window.chrome);
 
         if(avoidRemoveClickEvents.includes(orig_table_elem.id)){
             // do not remove click events from these buttons
@@ -127,7 +127,7 @@ function stripEventsFromButtons() {
             // replace paragraph element with an iframe
             let iframe = document.createElement('iframe');
             iframe.src = `${browser.runtime.getURL("resources/images/arrow_drop_down.svg")}`
-            
+            iframe.classList.add("icon");
             let paragraph = orig_table_elem.querySelector('p');
             paragraph.remove();
 
