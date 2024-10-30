@@ -118,6 +118,7 @@ function stripEventsFromButtons() {
         // Preserve the original button content and subtext
         const buttonText = orig_table_elem.querySelector("h3"); // Button name
         const subtext = orig_table_elem.querySelector("p"); // Subtext
+        const browser = (window.browser ?? window.chrome);
 
         if(avoidRemoveClickEvents.includes(orig_table_elem.id)){
             // do not remove click events from these buttons

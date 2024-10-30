@@ -56,7 +56,7 @@ body{
 
 body.dark{
     background-color: var(--mtu-dark-background);
-    color: white;
+    color: var(--mtu-dark-text);
 }
 
 span{
