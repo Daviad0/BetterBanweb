@@ -1,8 +1,8 @@
 const searchList [
-  {link:"https://www.banweb.mtu.edu/owassb/mtu_safety_first_alert.p_update"},
-  {link: "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypView"},
-  {link: "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypUpdate"}
-   ]
+  //{link:"https://www.banweb.mtu.edu/owassb/mtu_safety_first_alert.p_update"},
+  //{link: "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypView"},
+  //{link: "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypUpdate"},
+  ]
 
 
 const searchInput = document.querySelector('.input');
@@ -18,15 +18,15 @@ searchInput.addEventListener("input", (e) =>{
       return string.link.includes(value)
     }))
   }else{
-
+    clearList();
   }
 
-}
+})
 
 const clearButton = document.getElementById('clear');
 
 clearButton.addEventListener("click", (e) => {
-
+  clearList();
 }
 
 
@@ -45,3 +45,10 @@ function setList(results){
   list.appendChild(resultItem);
   }
 }
+
+function clearList(){
+  // looping through each child of the search results list and remove each child
+  while (list.firstChild){
+      list.removeChild(list.firstChild)
+  }
+})
