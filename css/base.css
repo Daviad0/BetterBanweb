@@ -450,6 +450,7 @@ span{
 
 iframe{
     border: none !important;
+    transition: all 0.5s ease-in-out;
 }
 
 .infotextdiv{
@@ -521,4 +522,39 @@ iframe{
     display: inline-block;
     width: unset;
     border: 2px solid black;
+}
+
+.current-account{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px 20px;
+    background-color: var(--mtu-color);
+    color: black;
+    border-radius: 0px 20px 0px 0px;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.current-account .name{
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+.current-account .logout{
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    border:none;
 }

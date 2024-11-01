@@ -6,6 +6,8 @@ let avoidRemoveClickEvents = [
     'bmenu--P_AdminMnu___UID1'
 ];
 
+let financialAidLinks = "https://www.banweb.mtu.edu/owassb/bwrkrhst.P_DispAwdAidYear";
+
 const themedURLs = {
     // Personal Information Tab Hyperlinks
     "Update Safety First Alert": "https://www.banweb.mtu.edu/owassb/mtu_safety_first_alert.p_update",
@@ -139,6 +141,18 @@ function stripEventsFromButtons() {
 
             orig_table_elem.appendChild(iframe);
 
+            orig_table_elem.addEventListener('click', function(e){
+                let internalIframe = orig_table_elem.querySelector('iframe');
+                if(internalIframe.style.transform == 'rotate(180deg)'){
+                    internalIframe.style.transform = 'rotate(0deg)';
+                }
+                else{
+                    internalIframe.style.transform = 'rotate(180deg)';
+                }
+            });
+
+
+
 
             return;
             
@@ -224,6 +238,25 @@ Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButto
         switchContent("base");
     });
 });
+
+let oldElem = document.getElementById("/owassb/bwrkrhst--P_DispAwdAidYear___UID2")
+// replace element to remove click events
+let newElem = oldElem.cloneNode(true);
+oldElem.parentNode.replaceChild(newElem, oldElem);
+
+newElem.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    loadPageWithCookies(financialAidLinks);
+});
+
+let accountElement = document.createElement('div');
+accountElement.innerHTML = `
+Currently Logged in as <span class="name">blizzard</span>
+<input type="button" class="logout" value="Log Out">
+`
+accountElement.classList.add('current-account');
+document.body.prepend(accountElement);
 
 
 setTimeout(setup, 1000);
