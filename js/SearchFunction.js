@@ -31,7 +31,7 @@ clearButton.addEventListener("click", (e) => {
 
 
 function setList(results){
-
+  clearList()
   for(const string of results){
 
     const resultItem = document.createElement('li');
@@ -43,12 +43,30 @@ function setList(results){
   resultItem.appendChild(text);
 
   list.appendChild(resultItem);
+
+  if(resultItem == 0){
+    noResults();
+  }
   }
 }
 
 function clearList(){
   // looping through each child of the search results list and remove each child
   while (list.firstChild){
-      list.removeChild(list.firstChild)
+      list.removeChild(list.firstChild);
   }
 })
+
+function noResults(){
+  // create an element for the error; a list item ("li")
+  const error = document.createElement('li');
+  // adding a class name of "error-message" to our error element
+  error.classList.add('error-message');
+
+  // creating text for our element
+  const text = document.createTextNode('No results found. Sorry!');
+  // appending the text to our element
+  error.appendChild(text);
+  // appending the error to our list element
+  list.appendChild(error);
+}
