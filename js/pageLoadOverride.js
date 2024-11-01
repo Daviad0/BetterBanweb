@@ -127,7 +127,13 @@ function stripEventsFromButtons() {
             // replace paragraph element with an iframe
             let iframe = document.createElement('iframe');
             iframe.src = `${browser.runtime.getURL("resources/images/arrow_drop_down.svg")}`
-            iframe.classList.add("icon");
+            iframe.style.width = "50px";
+            iframe.style.height = "50px";
+            iframe.style.border = "none";
+            iframe.style.textAlign = "center";
+            iframe.style.margin = "auto";
+            iframe.style.display = "block";
+
             let paragraph = orig_table_elem.querySelector('p');
             paragraph.remove();
 
