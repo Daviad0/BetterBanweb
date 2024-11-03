@@ -4,14 +4,14 @@
   "version": "0.1",
   "description": "Makes the Banweb application for Michigan Tech students just... better!",
   "icons": {
-    "48": "Icons/BetterBanweb.png"
+    "48": "Icons/BetterBanweb.jpg"
   },
   "permissions": [
     "activeTab",
     "storage"
   ],
   "action": {
-    "default_icon": "resources/images/testicon.png",
+    "default_icon": "resources/images/BetterBanweb.jpg",
     "default_title": "Better Banweb",
     "default_popup": "popup/home.html"
   },
