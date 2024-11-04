@@ -8,6 +8,16 @@ Base Colors:
 
 */
 
+:root{
+    --mtu-color: #ffcd00;
+    --mtu-black: #000000;
+    --mtu-light: #f0fcfc;
+    --mtu-dark-background: #242424;
+    --mtu-dark-text: #ffffff;
+    --mtu-dark-color: #4a4a4a;
+    --mtu-success: #15a115;
+}
+
 @font-face {
     font-family: 'Lato';
     src: url('moz-extension://__MSG_@@extension_id__/resources/fonts/Lato-Regular.ttf'),
@@ -67,6 +77,7 @@ span{
 .settings-line{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 10px 0;
 }
 
@@ -98,7 +109,7 @@ span{
 .container-outer-border .header{
     background-color: #ffcd00;
     border-radius: 0px 0px 10px 10px;
-    color: white;
+    color: black;
     padding: 4px 20px;
     margin-bottom: 20px;
     font-size: 20px;
@@ -197,3 +208,33 @@ span{
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+
+input[type="button"]{
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: var(--mtu-color);
+    padding: 0px 20px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    width: unset;
+    border: 2px solid black;
+}
+
+input[type="text"]{
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    height: unset;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    width: unset;
+    border: 2px solid black;
+    margin: 0px 10px;
+}

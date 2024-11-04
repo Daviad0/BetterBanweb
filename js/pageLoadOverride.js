@@ -157,9 +157,10 @@ const buttonMapping = {
 };
 
 function setClickEventsOnDropdownItem(){
+    console.log("Setting click events on dropdown items");
     let dropdownItems = Array.from(document.querySelectorAll("#level3Container a"));
     dropdownItems.forEach((item) => {
-
+        console.log("Replacing"); 
         // replace item to remove click events
 
         let newElem = item.cloneNode(true);
@@ -265,6 +266,8 @@ function stripEventsFromButtons() {
             orig_table_elem.appendChild(iframe);
 
             orig_table_elem.addEventListener('click', function(e){
+
+                console.log("Clicked");
 
                 setClickEventsOnDropdownItem();
 
@@ -379,10 +382,30 @@ newElem.addEventListener('click', function(e){
 let accountElement = document.createElement('div');
 accountElement.innerHTML = `
 Currently Logged in as <span class="name">blizzard</span>
-<input type="button" class="logout" value="Log Out">
+<input type="button" id="logout" class="logout" value="Log Out">
 `
 accountElement.classList.add('current-account');
 document.body.prepend(accountElement);
+
+document.getElementById('logout').addEventListener('click', function(e){
+
+    // remove all cookies
+
+    document.cookie.split(";").forEach(function(c) {
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+
+    e.preventDefault();
+    e.stopPropagation();
+    window.location = 'https://sso.mtu.edu/cas/logout';
+});
+
+let pageElement = document.createElement('div');
+pageElement.innerHTML = `
+<span id="page-title">Welcome to Banweb</span>
+`
+pageElement.classList.add('current-page');
+document.body.prepend(pageElement);
 
 
 setTimeout(setup, 1000);

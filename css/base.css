@@ -481,6 +481,7 @@ iframe{
     display: inline-block;
     width: unset;
     border: 2px solid black;
+    margin: 10px;
 }
 
 #contentSubHolder form input[type="submit"]{
@@ -495,6 +496,7 @@ iframe{
     display: inline-block;
     width: unset;
     border: 2px solid black;
+    margin: 10px;
 }
 #contentSubHolder form input[type="reset"]{
     border-radius: 10px;
@@ -508,6 +510,7 @@ iframe{
     display: inline-block;
     width: unset;
     border: 2px solid black;
+    margin: 10px;
 }
 
 #contentSubHolder form select{
@@ -522,6 +525,7 @@ iframe{
     display: inline-block;
     width: unset;
     border: 2px solid black;
+    margin: 10px;
 }
 
 .current-account{
@@ -547,6 +551,24 @@ iframe{
     margin-left: 10px;
 }
 
+.current-page{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 20px 0px 0px 0px;
+    border-top: 4px solid black;
+    border-left: 4px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-size: 20px;
+}
+
+
 .current-account .logout{
     display: inline-block;
     background-color: black;
@@ -557,4 +579,13 @@ iframe{
     font-weight: bold;
     margin-left: 10px;
     border:none;
+}
+
+td.delabel{
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
 }
