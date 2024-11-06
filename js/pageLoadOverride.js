@@ -30,10 +30,12 @@ const themedURLs = {
     "Weapons Registration": "https://www.banweb.mtu.edu/owassb/baninst1.mtu_weapon_reg.p_weapon_reg",
     "Michigan Tech Payments Form": "https://www.banweb.mtu.edu/owassb/mtu_payments.p_main",
 
+    // Student Tab Hyperlinks
     "Fraternity/Sorority Release Authorization" : "https://www.banweb.mtu.edu/owassb/mtu_student_release.p_collection",
     "International Arrival Information": "https://www.banweb.mtu.edu/owassb/mtu_intl_itinerary.p_menu",
     "VA Enrollment Form": "https://www.banweb.mtu.edu/owassb/va_enrollment_form.display",
 
+    // Employee Tab Hyperlinks
     "Time Sheet": "https://www.banweb.mtu.edu/owassb/bwpktais.P_SelectTimeSheetRoll",
     "Compensation Statement": "https://www.banweb.mtu.edu/owassb/bwpkebst.P_DispIDSelect",
     "Leave Balances": "https://www.banweb.mtu.edu/owassb/bwpkeinf.P_ViewLeaveBalances",
@@ -42,26 +44,15 @@ const themedURLs = {
     "Non-Payroll Direct Deposit Destination": "https://www.banweb.mtu.edu/owassb/mtu_direct_refunds.P_ModifyDirectDeposit",
     "Update Campus Directory": "https://www.banweb.mtu.edu/owassb/cd_addr_update.p_main",
     "Summary of Current and Future Deductions": "https://www.banweb.mtu.edu/owassb/mtu_benefits_summary.p_main",
-
     "Cost Share": "https://www.banweb.mtu.edu/owassb/mtu_cost_share.p_display",
+    
+    // Guest Tab Hyperlinks
     "Request Guest Access": "https://www.banweb.mtu.edu/owassb/W4P_SPONSOR.student_sponsor",
     "Change/View Current Guest(s) Access": "https://www.banweb.mtu.edu/owassb/web4guest.P_AuthPackage",
     "View Authorization History": "https://www.banweb.mtu.edu/owassb/web4guest.P_ShowAudit",
     "Update Email Addresses": "https://www.banweb.mtu.edu/owassb/mtu_email_update.p_show",
 
-    "Time Sheet": "https://www.banweb.mtu.edu/owassb/bwpktais.P_SelectTimeSheetRoll",
-    "Compensation Statement": "https://www.banweb.mtu.edu/owassb/bwpkebst.P_DispIDSelect",
-    "Leave Balances": "https://www.banweb.mtu.edu/owassb/bwpkeinf.P_ViewLeaveBalances",
-    "Update Payroll Direct Deposit": "https://www.banweb.mtu.edu/owassb/bwpkhpay.P_UpdateDirectDeposit",
-    "Update Campus Directory": "https://www.banweb.mtu.edu/owassb/cd_addr_update.p_main",
-    "Summary of Current and Future Deductions": "https://www.banweb.mtu.edu/owassb/mtu_benefits_summary.p_main",
-    "Cost Share": "https://www.banweb.mtu.edu/owassb/mtu_cost_share.p_display",
-    "Request Guest Access": "https://www.banweb.mtu.edu/owassb/W4P_SPONSOR.student_sponsor",
-    "Change/View Current Guest(s) Access": "https://www.banweb.mtu.edu/owassb/web4guest.P_AuthPackage",
-    "View Authorization History": "https://www.banweb.mtu.edu/owassb/web4guest.P_ShowAudit",
-    "Update Email Addresses": "https://www.banweb.mtu.edu/owassb/mtu_email_update.p_show",
-
-
+    // Payments/Confirm Enrollment Hyperlinks
     "Michigan Tech Student Bill": "https://www.banweb.mtu.edu/owassb/mtu_webbill.p_viewaccttotal",
     "Account Summary By Term": "https://www.banweb.mtu.edu/owassb/bwskoacc.P_ViewAcct",
     "Student Account Detail": "https://www.banweb.mtu.edu/owassb/bzskoacc.P_ViewAcctTotal",
@@ -73,12 +64,6 @@ const themedURLs = {
     "Anti-Virus": "https://www.banweb.mtu.edu/owassb/mtu_mcafee_payments.p_display",
     "Direct Deposit Destination": "https://www.banweb.mtu.edu/owassb/mtu_direct_refunds.P_ModifyDirect",
 
-
-    // Students Tab Hyperlinks
-    "Students Records": "https://www.banweb.mtu.edu/owassb/twbkwbis.P_GenMenu?name=bmenu.P_MainMnu#pageName=bmenu--P_AdminMnu___UID1&pageReferrerId=bmenu--P_StuMainMnu___UID1&pageDepth=3&options=false",
-    "Unofficial Transcript Request": "https://www.banweb.mtu.edu/owassb/bwskotrn.P_ViewTermTran",
-    "Official Transcript Request": "https://www.mtu.edu/registrar/students/transcripts/",
-    // Add more hyperlinks as needed mattyboy isnt done yet
 };
 
 const dropdownItemLinks = {
@@ -109,6 +94,7 @@ const dropdownItemLinks = {
     "Account Summary By Term":"https://www.banweb.mtu.edu/owassb/bwskoacc.P_ViewAcct",
     "Degree Audit":"https://www.banweb.mtu.edu/owassb/twbkwbis.P_GenMenu?name=bmenu.pz_sact",
     "Apply to Graduate":"https://www.banweb.mtu.edu/owassb/bwskgrad.p_disp_grad_term"
+
 }
 
 const buttonMapping = {
@@ -128,9 +114,13 @@ const buttonMapping = {
     "Veterans Classifications": "bwgkvets--P_DispClass___UID12",
     "Weapons Registration": "baninst1--mtu_weapon_reg.p_weapon_reg___UID13",
     "Michigan Tech Payments Form": "mtu_payments--p_main___UID14",
+
+    // Student Tab UIDs for button mapping
     "Fraternity/Sorority Release Authorization": "mtu_student_release--p_collection___UID2",
     "International Arrival Information": "mtu_intl_itinerary--p_menu___UID3",
     "VA Enrollment Form": "va_enrollment_form--display___UID4",
+
+    // Employee Tab UIDs for button mapping
     "Time Sheet": "bwpktais--P_SelectTimeSheetRoll___UID0",
     "Compensation Statement": "bwpkebst--P_DispIDSelect___UID1",
     "Leave Balances": "bwpkeinf--P_ViewLeaveBalances___UID5",
@@ -138,10 +128,14 @@ const buttonMapping = {
     "Update Campus Directory": "cd_addr_update--p_main___UID9",
     "Summary of Current and Future Deductions": "mtu_benefits_summary--p_main___UID10",
     "Cost Share": "mtu_cost_share--p_display___UID0",
+
+    // Guest Tab UIDs for button mapping
     "Request Guest Access": "W4P_SPONSOR--student_sponsor___UID0",
     "Change/View Current Guest(s) Access": "web4guest--P_AuthPackage___UID1",
     "View Authorization History": "web4guest--P_ShowAudit___UID2",
     "Update Email Addresses": "mtu_email_update--p_show___UID3",
+
+    // Payments/Confirm Enrollment Tab UIDs for button mapping
     "Michigan Tech Student Bill": "mtu_webbill--p_viewaccttotal___UID0",
     "Account Summary By Term": "bwskoacc--P_ViewAcct___UID1",
     "Student Account Detail": "bzskoacc--P_ViewAcctTotal___UID2",
@@ -153,7 +147,7 @@ const buttonMapping = {
     "Anti-Virus": "mtu_mcafee_payments--p_display___UID8",
     "Non-Payroll Direct Deposits History": "mtu_student_direct_deposits--p_gather_message___UID9",
     "Non-Payroll Direct Deposit Destination": "mtu_direct_refunds--P_ModifyDirectDeposit___UID10"
-    // Students Tab UIDs for button mapping
+
 };
 
 function setClickEventsOnDropdownItem(){
@@ -316,6 +310,7 @@ function stripEventsFromButtons() {
 
       // Map button IDs to URLs
       const urlMap = {
+        // Personal Information Tab
         "bwgkogad--P_SelectAtypView___UID1": themedURLs["View Addresses"],
         "bwgkogad--P_SelectAtypUpdate___UID2": themedURLs["Update Addresses"],
         "bwgkoemr--P_ViewEmrgContacts___UID3": themedURLs["View Emergency Contacts"],
@@ -329,7 +324,41 @@ function stripEventsFromButtons() {
         "mtu_career_ctr_jobo--p_collection___UID11": themedURLs["Update Job Information"],
         "bwgkvets--P_DispClass___UID12": themedURLs["Veterans Classifications"],
         "baninst1--mtu_weapon_reg.p_weapon_reg___UID13": themedURLs["Weapons Registration"],
-        "mtu_payments--p_main___UID14": themedURLs["Michigan Tech Payments Form"]
+        "mtu_payments--p_main___UID14": themedURLs["Michigan Tech Payments Form"],
+
+        // Student Tab
+        "mtu_student_release--p_collection___UID2": themedURLs["Fraternity/Sorority Release Authorization"],
+        "mtu_intl_itinerary--p_menu___UID3": themedURLs["International Arrival Information"],
+        "va_enrollment_form--display___UID4": themedURLs["VA Enrollment Form"],
+        
+        // Employee Tab
+        "bwpktais--P_SelectTimeSheetRoll___UID0": themedURLs["Time Sheet"],
+        "bwpkebst--P_DispIDSelect___UID1": themedURLs["Compensation Statement"],
+        "bwpkeinf--P_ViewLeaveBalances___UID5": themedURLs["Leave Balances"],
+        "bwpkhpay--P_UpdateDirectDeposit___UID6": themedURLs["Update Payroll Direct Deposit"],
+        "cd_addr_update--p_main___UID9": themedURLs["Update Campus Directory"],
+        "mtu_benefits_summary--p_main___UID10": themedURLs["Summary of Current and Future Deductions"],
+        "mtu_cost_share--p_display___UID0": themedURLs["Cost Share"],
+
+        // Guest Tab
+        "W4P_SPONSOR--student_sponsor___UID0": themedURLs["Request Guest Access"],
+        "web4guest--P_AuthPackage___UID1": themedURLs["Change/View Current Guest(s) Access"],
+        "web4guest--P_ShowAudit___UID2": themedURLs["View Authorization History"],
+        "mtu_email_update--p_show___UID3": themedURLs["Update Email Addresses"],
+
+        // Payments/Confirm Enrollment Tab
+        "mtu_webbill--p_viewaccttotal___UID0": themedURLs["Michigan Tech Student Bill"],
+        "bwskoacc--P_ViewAcct___UID1": themedURLs["Account Summary By Term"],
+        "bzskoacc--P_ViewAcctTotal___UID2": themedURLs["Student Account Detail"],
+        "mtu_misc_payment--p_gather_message___UID3": themedURLs["Insurance Payment"],
+        "mtu_enrollment_deposit--p_gather_message___UID4": themedURLs["Enrollment Deposit"],
+        "mtu_parking_tickets--p_gather_message___UID5": themedURLs["Parking Tickets Payment"],
+        "mtu_broomball--p_gather_message___UID6": themedURLs["Broomball Registration Payment"],
+        "mtu_binding_fee--p_gather_message___UID7": themedURLs["Graduate School Fees"],
+        "mtu_mcafee_payments--p_display___UID8": themedURLs["Anti-Virus"],
+        "mtu_student_direct_deposits--p_gather_message___UID9": themedURLs["Non-Payroll Direct Deposit History"],
+        "mtu_direct_refunds--P_ModifyDirectDeposit___UID10": themedURLs["Non-Payroll Direct Deposit Destination"]
+
     };
 
     const url = urlMap[new_table_elem.id];
@@ -379,12 +408,17 @@ newElem.addEventListener('click', function(e){
     loadPageWithCookies(financialAidLinks);
 });
 
+// Create the account element
 let accountElement = document.createElement('div');
 accountElement.innerHTML = `
-Currently Logged in as <span class="name">blizzard</span>
-<input type="button" id="logout" class="logout" value="Log Out">
-`
+    Currently Logged in as <span class="name">username</span>
+    <input type="button" id="logout" class="logout" value="Log out">
+`;
+
+// Add a class to style the element
 accountElement.classList.add('current-account');
+
+// Prepend the element to the body of the page
 document.body.prepend(accountElement);
 
 document.getElementById('logout').addEventListener('click', function(e){
