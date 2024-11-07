@@ -67,6 +67,7 @@ const themedURLs = {
 };
 
 const dropdownItemLinks = {
+    // Registration Dropdown
     "Check Your Registration Status": "https://www.banweb.mtu.edu/owassb/bwskrsta.P_RegsStatusDisp",
     "Look-up Classes to Add": "https://www.banweb.mtu.edu/owassb/bwskfcls.p_sel_crse_search",
     "Student Final Exam Schedule": "https://www.banweb.mtu.edu/owassb/mtu_final_exam_schedule.p_display",
@@ -75,14 +76,16 @@ const dropdownItemLinks = {
     "Express Textbook": "https://www.banweb.mtu.edu/owassb/gendev.express_text.p_link",
     "Add/Drop Classes": "https://www.banweb.mtu.edu/owassb/bwskfreg.P_AltPin",
     "Student Grid Schedule": "https://www.banweb.mtu.edu/owassb/bwskfshd.P_CrseSchd",
+
+    // Student Records Dropdown
     "Academic Information": "https://www.banweb.mtu.edu/owassb/mtu_stu_academic_status.p_display",
     "View Status of Transcript Requests":"https://www.banweb.mtu.edu/owassb/bwskwtrr.p_disp_order_requests",
     "Final Grades":"https://www.banweb.mtu.edu/owassb/bwskogrd.P_ViewTermGrde",
     "Job Offer":"https://www.banweb.mtu.edu/owassb/mtu_career_ctr_jobo.p_collection",
     "Student Account Detail":"https://www.banweb.mtu.edu/owassb/bzskoacc.P_ViewAcctTotal",
-    "Order Duplicate Diploma":"",
+    "Order Duplicate Diploma":"https://www.michaelsutter.com/mtu",
     "COVID-19 Pass/Fail Option":"https://www.banweb.mtu.edu/owassb/mtu_covid19_pass_fail_option.p_begin",
-    "Academic Transcript Request (Official)":"",
+    "Academic Transcript Request (Official)":"https://www.mtu.edu/registrar/students/transcripts/",
     "Transfer History":"https://www.banweb.mtu.edu/owassb/mtu_stu_transfer_history.p_display",
     "Tax Notification (1098-T Electronic Consent)":"https://www.banweb.mtu.edu/owassb/mtu_1098t_consent.p_review_current",
     "International Student Employer Information":"https://www.banweb.mtu.edu/owassb/mtu_intl_opt.p_display",
@@ -93,10 +96,87 @@ const dropdownItemLinks = {
     "Tax Notification (1098-T)":"https://www.banweb.mtu.edu/owassb/bwtktxns.p_disp_tax_notification",
     "Account Summary By Term":"https://www.banweb.mtu.edu/owassb/bwskoacc.P_ViewAcct",
     "Degree Audit":"https://www.banweb.mtu.edu/owassb/twbkwbis.P_GenMenu?name=bmenu.pz_sact",
-    "Apply to Graduate":"https://www.banweb.mtu.edu/owassb/bwskgrad.p_disp_grad_term"
+    "Apply to Graduate":"https://www.banweb.mtu.edu/owassb/bwskgrad.p_disp_grad_term",
 
+    // Benefits & Deductions Dropdown
+    "Retirement Plans": "https://www.banweb.mtu.edu/owassb/bwpkdcmn.P_DispDednCurRet",
+    "Miscellaneous": "https://www.banweb.mtu.edu/owassb/bwpkdcmn.P_DispDednCurMisc",
+    "Compensation Statement": "https://www.banweb.mtu.edu/owassb/bwpkebst.P_DispIDSelect",
+    "Health Benefits": "https://www.banweb.mtu.edu/owassb/bwpkdcmn.P_DispDednCurHlt",
+    "Open Enrollment": "https://www.banweb.mtu.edu/EmployeeSelfService/ssb/benefits#/pOpenenrollment",
+    "Husky Health Information": "https://www.banweb.mtu.edu/owassb/mtu_huskyhealth_info.p_display",
+    "Flexible Spending Accounts": "https://www.banweb.mtu.edu/owassb/bwpkdcmn.P_DispDednCurFlxs",
+    "Beneficiaries and Dependents": "https://www.banweb.mtu.edu/owassb/bwpkdbcv.P_NamesAndBenefits",
+
+    // Pay Information Dropdown
+    "Direct Deposit Allocation": "https://www.banweb.mtu.edu/owassb/bwpkhpay.P_ViewDirectDeposit",
+    "Deductions History": "https://www.banweb.mtu.edu/owassb/bwpkhded.P_ChooseDedn",
+    "Earnings History": "https://www.banweb.mtu.edu/owassb/bwpkhpay.P_ChooseEarnings",
+    "Pay Stubs": "https://www.banweb.mtu.edu/owassb/bwpkhstb.P_ChoosePayStubYear",
+
+    // Tax Forms Dropdown
+    "W-4 Employee's Withholding Certificate": "https://www.banweb.mtu.edu/owassb/bwpkxtxs.P_ViewW4",
+    "W-2c Corrected Wage and Tax Statement": "https://www.banweb.mtu.edu/owassb/bwpkxtxs.P_ChooseW2cKey",
+    "Electronic Consent (W-2 and 1095-C)": "https://www.banweb.mtu.edu/owassb/bwpkxtxs.P_W2Consent",
+    "1095-C Employer-Provided Health Insurance Offer and Coverage Statement": "https://www.banweb.mtu.edu/owassb/bwpkxtxs.P_Choose1095cKey",
+    "W2 Year End Earnings Statement": "https://www.banweb.mtu.edu/owassb/bwpkxtxs.P_ChooseW2Key",
+
+    // Safety Incidents and Injuries Dropdown
+    "Submit Incident/Injury": "https://www.banweb.mtu.edu/owassb/safety_incidents.p_form",
+    "Review Submitted Forms": "https://www.banweb.mtu.edu/owassb/safety_incidents.p_view_submissions",
+    
+};
+
+// This runs after the page content has loaded.
+document.addEventListener('DOMContentLoaded', function () {
+    // Find all links in the dropdown and set the data-url attribute dynamically.
+    Object.keys(dropdownItemLinks).forEach(name => {
+        // Find the link by its text content
+        const link = [...document.querySelectorAll('a')].find(link => link.textContent.trim() === name);
+        if (link) {
+            // Add the corresponding data-url from the mapping
+            link.setAttribute('data-url', dropdownItemLinks[name]);
+        }
+    });
+
+    // Listen for clicks on any links with a data-url attribute
+    document.querySelectorAll('a[data-url]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            // Prevent the default navigation behavior
+            event.preventDefault();
+
+            // Get the URL from the data-url attribute
+            const url = this.getAttribute('data-url');
+
+            // Fetch and display the content from the URL
+            fetchAndDisplayContent(url);
+        });
+    });
+});
+
+// Function to fetch content from the URL and display it in the #contentArea
+function fetchAndDisplayContent(url) {
+    let contentArea = document.getElementById('contentArea');
+
+    // If contentArea doesn't exist, create it
+    if (!contentArea) {
+        contentArea = document.createElement('div');
+        contentArea.id = 'contentArea';
+        contentArea.style.marginTop = '20px';
+        document.body.appendChild(contentArea);
+    }
+
+    // Fetch the content from the provided URL
+    fetch(url)
+        .then(response => response.text())  // Get the content as text (HTML)
+        .then(data => {
+            contentArea.innerHTML = data;  // Inject the fetched content into the contentArea
+        })
+        .catch(error => {
+            console.error('Error fetching content:', error);
+            contentArea.innerHTML = "<p>Sorry, there was an error loading the content.</p>";
+        });
 }
-
 const buttonMapping = {
     // Peronal Information Tab UIDs for button mapping
     "Update Safety First Alert": "mtu_safety_first_alert--p_update___UID0",
