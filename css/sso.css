@@ -8,6 +8,17 @@ Base Colors:
 
 */
 
+:root{
+    --mtu-color: #ffcd00;
+    --mtu-black: #000000;
+    --mtu-light: #f0fcfc;
+    --mtu-container: #ffffff;
+    --mtu-dark-background: #242424;
+    --mtu-dark-text: #ffffff;
+    --mtu-dark-color: #4a4a4a;
+    --mtu-success: #15a115;
+}
+
 @font-face {
     font-family: 'Lato';
     src: url('moz-extension://__MSG_@@extension_id__/resources/fonts/Lato-Regular.ttf');
@@ -58,8 +69,8 @@ Base Colors:
 }
 
 #login [type="submit"]{
-    background-color: black !important;
-    color: white !important;
+    background-color: var(--mtu-black) !important;
+    color: var(--mtu-container) !important;
     border: none !important;
     border-radius: 10px !important;
     padding: 10px !important;
@@ -94,7 +105,7 @@ Base Colors:
 }
 
 #searchField{
-    border: 4px solid #ffcd00;
+    border: 4px solid var(--mtu-color);
     border-radius: 10px;
 }
 
@@ -112,16 +123,23 @@ Base Colors:
 }
 
 body{
-    background-color: #faffff;
+    background-color: var(--mtu-light);
     
     margin: 0;
     padding: 20px;
     border-radius: 10px;
+    opacity: 0;
+}
+
+body.ready{
+    opacity: 1;
 }
 
 body.dark{
-    background-color: #242424;
-    color: white;
+    --mtu-color: var(--mtu-dark-color);
+    --mtu-text: var(--mtu-dark-text);
+    --mtu-light: var(--mtu-dark-background);
+    --mtu-container: var(--mtu-dark-background);
 }
 
 span{
@@ -175,34 +193,27 @@ span{
 }
 
 .container{
-    background-color: white;
+    background-color: var(--mtu-container);
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-.dark .container{
-    background-color: #242424;
-}
 
 .container-outer-border{
-    background-color: white !important;
+    background-color: var(--mtu-container) !important;
     border-radius: 20px !important;
     padding: 0px 10px 10px 10px !important;
-    border: 8px solid #ffcd00;
+    border: 8px solid var(--mtu-color);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-.dark .container-outer-border{
-    background-color: #242424;
-    border: 4px solid #4a4a4a;
-}
 
 .container-outer-border .header{
-    background-color: #ffcd00;
+    background-color: var(--mtu-color);
     border-radius: 0px 0px 10px 10px;
-    color: black;
+    color: var(--mtu-black);
     padding: 4px 20px;
     margin-bottom: 20px;
     font-size: 20px;
@@ -214,25 +225,6 @@ span{
     text-align:center;
     
 }
-
-.dark .container-outer-border .header{
-    background-color: #4a4a4a;
-    color: white;
-}
-
-.container-inner-border{
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px;
-    border: 4px solid #f0fcfc;
-}
-
-.dark .container-inner-border{
-    background-color: #242424;
-    border: 4px solid #4a4a4a;
-}
-
-
 
 .checkbox-container {
     display: block;
@@ -266,17 +258,14 @@ span{
     height: 25px;
     width: 25px;
     border-radius: 10px;
-    background-color: #eee;
+    background-color: var(--mtu-container);
   }
   
   /* When the checkbox is checked, add a blue background */
   .checkbox-container input:checked ~ .checkmark {
-    background-color: #ffcd00;
+    background-color: var(--mtu-color);
   }
   
-  .dark .checkbox-container input:checked ~ .checkmark {
-    background-color: #4a4a4a;
-  }
   /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
     content: "";
@@ -295,7 +284,7 @@ span{
     top: 5px;
     width: 5px;
     height: 10px;
-    border: solid white;
+    border: solid var(--mtu-container);
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -315,10 +304,10 @@ span{
 }
 
 .card{
-    background-color: white !important;
+    background-color: var(--mtu-container) !important;
     border-radius: 20px !important;
     padding: 0px 10px 10px 10px !important;
-    border: 8px solid #ffcd00;
+    border: 8px solid --mtu-color;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     text-align: center;
 }

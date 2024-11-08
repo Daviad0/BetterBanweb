@@ -514,9 +514,19 @@ document.getElementById('logout').addEventListener('click', function(e){
     window.location = 'https://sso.mtu.edu/cas/logout';
 });
 
+function updateCurrentPage(submenu, content){
+    if(submenu){
+        document.getElementById("submenu-title").innerHTML = submenu;
+    }
+    if(content){
+        document.getElementById("content-title").innerHTML = content;
+    }
+}
+
 let pageElement = document.createElement('div');
 pageElement.innerHTML = `
-<span id="page-title">Welcome to Banweb</span>
+<span style="font-weight:600" id="submenu-title">Welcome to Banweb</span>
+<span id="content-title"></span>
 `
 pageElement.classList.add('current-page');
 document.body.prepend(pageElement);
