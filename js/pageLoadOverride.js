@@ -472,6 +472,9 @@ function setup(){
 
 Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButton) => {
     baseButton.addEventListener('click', function (e){
+
+        updateCurrentPage(baseButton.querySelector('span').innerText, "");
+
         setTimeout(stripEventsFromButtons, 1000);
         switchContent("base");
     });

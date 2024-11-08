@@ -41,7 +41,8 @@
         "js/getData.js",
         "js/main.js",
         "js/pageLoadOverride.js",
-        "js/cookieHandler.js"
+        "js/cookieHandler.js",
+        "js/setupTheme.js"
       ],
       "css": [
         "css/base.css"
@@ -53,7 +54,11 @@
       ],
       "js": [
         "js/SSOLogin.js",
-        "js/SSOSetup.js"
+        "js/getData.js",
+        "js/saveData.js",
+        "js/SSOSetup.js",
+        "js/setupTheme.js"
+        
       ],
       "css": [
         "css/sso.css"

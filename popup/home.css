@@ -157,6 +157,7 @@ span{
     width: 25px;
     border-radius: 10px;
     background-color: var(--mtu-container);
+    border: 2px solid var(--mtu-color);
   }
   
   /* When the checkbox is checked, add a blue background */
@@ -217,4 +218,8 @@ input[type="text"]{
     width: unset;
     border: 2px solid black;
     margin: 0px 10px;
+}
+
+input[type="text"].error{
+    border: 2px solid red;
 }

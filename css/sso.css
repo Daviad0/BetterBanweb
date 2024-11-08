@@ -66,7 +66,9 @@ Base Colors:
     text-align: left;
     width: 100% !important;
     margin-top: 20px;
+    color: var(--mtu-black);
 }
+
 
 #login [type="submit"]{
     background-color: var(--mtu-black) !important;
@@ -137,7 +139,7 @@ body.ready{
 
 body.dark{
     --mtu-color: var(--mtu-dark-color);
-    --mtu-text: var(--mtu-dark-text);
+    --mtu-black: var(--mtu-dark-text);
     --mtu-light: var(--mtu-dark-background);
     --mtu-container: var(--mtu-dark-background);
 }

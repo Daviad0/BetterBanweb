@@ -1,13 +1,39 @@
 // Store all of the settings
 let settings = {
     "general_theme-enabled": null,
-    "general_dark-mode": null
+    "general_dark-mode": null,
+    "general_mtu-color": null,
+    "general_mtu-black": null,
+    "general_mtu-container": null,
+    "general_mtu-light": null,
+    "general_mtu-dark-color": null,
+    "general_mtu-dark-text": null,
+    "general_mtu-dark-background": null,
+    "general_mtu-success": null,
+}
+
+function validation(value, validate){
+    switch(validate){
+        case "number":
+            return !isNaN(value);
+        case "boolean":
+            return value == "true" || value == "false";
+        case "color":
+            return /^#[0-9A-F]{6}$/i.test(value) || value == "";
+        case "text":
+            return value.length > 0;
+    }
+    return true;
 }
 
 // Define functions
 async function changeSetting(context){
+
+    context.classList.remove("error");
+
     let setting = context.id;
     let type = context.type;
+    let validate = context.getAttribute("data-validate");
 
     let value = null;
 
@@ -18,6 +44,11 @@ async function changeSetting(context){
         case "text":
             value = context.value;
             break;
+    }
+
+    if(!validation(value, validate)){
+        context.classList.add("error");
+        return;
     }
 
     await saveData(setting, value);
@@ -54,6 +85,8 @@ async function initialGetSettings(){
     }
 
     updateControls();
+
+    document.body.classList.add("ready");
 }
 
 Array.from(document.querySelectorAll(".setting")).forEach(input => {
