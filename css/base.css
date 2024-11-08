@@ -487,6 +487,21 @@ iframe{
     margin: 10px;
 }
 
+#contentSubHolder form input[type="number"]{
+    border-radius: 10px;
+    background-color: var(--mtu-container);
+    color: var(--mtu-black);
+    padding: 10px 20px;
+    height: unset;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    width: unset;
+    border: 2px solid var(--mtu-black);
+    margin: 10px;
+}
+
 #contentSubHolder form input[type="submit"]{
     border-radius: 10px;
     background-color: var(--mtu-color);
@@ -585,6 +600,16 @@ iframe{
 }
 
 td.delabel{
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+th.ddlabel{
     border-radius: 10px;
     display: flex;
     justify-content: center;

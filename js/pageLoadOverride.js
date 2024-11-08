@@ -288,10 +288,12 @@ function loadPageWithCookies(url){
             }
 
             switchContent("sub");
+            checkForFormGetOrPost();
             loadLock = false;
         }
 
         setTimeout(onlyTakeContentHolder, 1000);
+        
 
         // hide loading
 
@@ -311,6 +313,113 @@ function switchContent(view){
         document.getElementById('contentHolder').style.display = 'none';
         document.getElementById('contentSubHolder').style.display = 'block';
     }
+}
+
+function checkForFormGetOrPost(){
+    let contentWindow = document.getElementById('contentSubHolder');
+
+    let forms = contentWindow.querySelectorAll('form');
+
+    // for each form, we will strip the URL and the methods
+    // on the post of the form, we will get the content of the page and set it to the contentHolder of the current page
+    // we will also post the data to the URL
+
+    forms.forEach((form) => {
+        console.log("Form found");
+        let method = form.getAttribute('method').toLowerCase();
+        let action = form.getAttribute('action');
+
+
+        if(method == 'post'){
+
+            let submitButton = form.querySelector('input[type="submit"]');
+
+            if(!submitButton){
+                // ignore this form
+                return;
+            }
+            submitButton.addEventListener('click', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+
+
+                // get the form data
+                let formData = new FormData(form);
+
+                // get the content of the page
+                fetch(action, {
+                    method: 'POST',
+                    credentials: 'include',
+                    body: formData
+                }).then(response => {
+                    return response.text();
+                }).then(data => {
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(data, 'text/html');
+
+                    let contentHolder = document.getElementById('contentSubHolder');
+                    let pagebodydiv = doc.querySelector('.pagebodydiv');
+
+                    if(!pagebodydiv)
+                    {
+                        // post and open in new tab
+                        let newTab = window.open();
+                        newTab.document.write(data);
+                        return;
+                    }
+
+                    contentHolder.innerHTML = pagebodydiv.innerHTML;
+
+                    let isMainMenu = contentHolder.querySelectorAll(".menuplaintable").length > 0;
+                    
+
+                    if(isMainMenu){
+                        switchContent("base");
+                    }else{
+                        switchContent("sub");
+                        checkForFormGetOrPost();
+                    }
+                });
+            });
+            
+        }else if(method == "get"){
+            let submitButton = form.querySelector('input[type="submit"]');
+
+            submitButton.addEventListener('click', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+
+                let formData = new FormData(form);
+                let url = new URL(action);
+
+                for(let pair of formData.entries()){
+                    url.searchParams.append(pair[0], pair[1]);
+                }
+
+                loadPageWithCookies(url);
+            });
+        }
+
+    });
+
+
+    let links = contentWindow.querySelectorAll('a');
+
+    links.forEach((link) => {
+
+        let newLink = link.cloneNode(true);
+
+        link.parentNode.replaceChild(newLink, link);
+
+        newLink.addEventListener('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            
+
+            let url = newLink.getAttribute('href');
+            loadPageWithCookies(url);
+        });
+    });
 }
 
 function stripEventsFromButtons() {
