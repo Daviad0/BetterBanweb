@@ -261,6 +261,8 @@ function loadPageWithCookies(url){
     contentHolder.innerHTML = '';
     contentHolder.style.display = 'none'; // Hide until loaded
 
+    switchContent("loading");
+
     // show loading
 
     // loading.style.display = 'block';
@@ -275,24 +277,30 @@ function loadPageWithCookies(url){
     }).then(response => {
         return response.text();
     }).then(data => {
-        
-        let parser = new DOMParser();
-        let doc = parser.parseFromString(data, 'text/html');
 
-        contentHolder.innerHTML = data;
+        try{
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(data, 'text/html');
 
-        let onlyTakeContentHolder = () => {
-            let innerContentHolder = contentHolder.querySelector('.pagebodydiv');
-            if(innerContentHolder){
-                contentHolder.innerHTML = innerContentHolder.innerHTML;
+            contentHolder.innerHTML = data;
+
+            let onlyTakeContentHolder = () => {
+                let innerContentHolder = contentHolder.querySelector('.pagebodydiv');
+                if(innerContentHolder){
+                    contentHolder.innerHTML = innerContentHolder.innerHTML;
+                }
+
+                switchContent("sub");
+                checkForFormGetOrPost();
+                loadLock = false;
             }
 
-            switchContent("sub");
-            checkForFormGetOrPost();
-            loadLock = false;
+            setTimeout(onlyTakeContentHolder, 1000);
+        }catch(e){
+            switchContent("base");
         }
-
-        setTimeout(onlyTakeContentHolder, 1000);
+        
+        
         
 
         // hide loading
@@ -302,16 +310,22 @@ function loadPageWithCookies(url){
 }
 
 function switchContent(view){
-    // view can be "base" or "sub"
+    // view can be "base", "sub", "loading"
 
 
     if(view == "base"){
         document.getElementById('contentSubHolder').style.display = 'none';
         document.getElementById('contentHolder').style.display = 'block';
+        document.getElementById('loading').style.display = 'none';
     }
-    else{
+    else if(view == "sub"){
         document.getElementById('contentHolder').style.display = 'none';
         document.getElementById('contentSubHolder').style.display = 'block';
+        document.getElementById('loading').style.display = 'none';
+    }else{
+        document.getElementById('contentHolder').style.display = 'none';
+        document.getElementById('contentSubHolder').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
     }
 }
 
@@ -571,11 +585,20 @@ function setup(){
     contentSubHolder.id = 'contentSubHolder';
     contentSubHolder.style.display = 'none';
 
+    let contentLoading = document.createElement('div');
+    contentLoading.id = 'loading';
+    contentLoading.innerHTML = 'Loading';
+    contentLoading.style.display = 'none';
+
     let contentHolder = document.getElementById('contentHolder');
     contentHolder.parentNode.insertBefore(contentSubHolder, contentHolder.nextSibling);
+    contentHolder.parentNode.insertBefore(contentLoading, contentHolder.nextSibling);
+
+    switchContent("base");
 
   // Add event listeners to buttons for themed pages
-    stripEventsFromButtons();
+    setTimeout(stripEventsFromButtons, 1000);
+
 
 }
 
