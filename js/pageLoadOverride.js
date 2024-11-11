@@ -178,58 +178,6 @@ function fetchAndDisplayContent(url) {
             contentArea.innerHTML = "<p>Sorry, there was an error loading the content.</p>";
         });
 }
-const buttonMapping = {
-    // Peronal Information Tab UIDs for button mapping
-    "Update Safety First Alert": "mtu_safety_first_alert--p_update___UID0",
-    "View Addresses": "bwgkogad--P_SelectAtypView___UID1",
-    "Update Addresses": "bwgkogad--P_SelectAtypUpdate___UID2",
-    "View Emergency Contacts": "bwgkoemr--P_ViewEmrgContacts___UID3",
-    "Update Emergency Contacts": "bwgkoemr--P_SelectEmrgContacts___UID4",
-    "Update Ethnicity": "mtu_ethnicity_update--p_review_current___UID5",
-    "Update Marital Status": "bwgkomar--P_SelectMtypUpdate___UID6",
-    "Answer a Survey": "bwgksrvy--P_ShowSurveys___UID7",
-    "Disability Status": "bwgkdisb--P_DispDisab___UID8",
-    "Update Email Address": "mtu_email_update--p_show___UID9",
-    "Update Preferred First Name": "mtu_preferred_name--p_show___UID10",
-    "Update Job Information": "mtu_career_ctr_jobo--p_collection___UID11",
-    "Veterans Classifications": "bwgkvets--P_DispClass___UID12",
-    "Weapons Registration": "baninst1--mtu_weapon_reg.p_weapon_reg___UID13",
-    "Michigan Tech Payments Form": "mtu_payments--p_main___UID14",
-
-    // Student Tab UIDs for button mapping
-    "Fraternity/Sorority Release Authorization": "mtu_student_release--p_collection___UID2",
-    "International Arrival Information": "mtu_intl_itinerary--p_menu___UID3",
-    "VA Enrollment Form": "va_enrollment_form--display___UID4",
-
-    // Employee Tab UIDs for button mapping
-    "Time Sheet": "bwpktais--P_SelectTimeSheetRoll___UID0",
-    "Compensation Statement": "bwpkebst--P_DispIDSelect___UID1",
-    "Leave Balances": "bwpkeinf--P_ViewLeaveBalances___UID5",
-    "Update Payroll Direct Deposit": "bwpkhpay--P_UpdateDirectDeposit___UID6",
-    "Update Campus Directory": "cd_addr_update--p_main___UID9",
-    "Summary of Current and Future Deductions": "mtu_benefits_summary--p_main___UID10",
-    "Cost Share": "mtu_cost_share--p_display___UID0",
-
-    // Guest Tab UIDs for button mapping
-    "Request Guest Access": "W4P_SPONSOR--student_sponsor___UID0",
-    "Change/View Current Guest(s) Access": "web4guest--P_AuthPackage___UID1",
-    "View Authorization History": "web4guest--P_ShowAudit___UID2",
-    "Update Email Addresses": "mtu_email_update--p_show___UID3",
-
-    // Payments/Confirm Enrollment Tab UIDs for button mapping
-    "Michigan Tech Student Bill": "mtu_webbill--p_viewaccttotal___UID0",
-    "Account Summary By Term": "bwskoacc--P_ViewAcct___UID1",
-    "Student Account Detail": "bzskoacc--P_ViewAcctTotal___UID2",
-    "Insurance Payment": "mtu_misc_payment--p_gather_message___UID3",
-    "Enrollment Deposit": "mtu_enrollment_deposit--p_gather_message___UID4",
-    "Parking Tickets Payment": "mtu_parking_tickets--p_gather_message___UID5",
-    "Broomball Registration Payment": "mtu_broomball--p_gather_message___UID6",
-    "Graduate School Fees": "mtu_binding_fee--p_gather_message___UID7",
-    "Anti-Virus": "mtu_mcafee_payments--p_display___UID8",
-    "Non-Payroll Direct Deposits History": "mtu_student_direct_deposits--p_gather_message___UID9",
-    "Non-Payroll Direct Deposit Destination": "mtu_direct_refunds--P_ModifyDirectDeposit___UID10"
-
-};
 
 function setClickEventsOnDropdownItem(){
     console.log("Setting click events on dropdown items");
