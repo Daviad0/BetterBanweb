@@ -12,59 +12,60 @@ let avoidRemoveClickEvents = [
 
 let financialAidLinks = "https://www.banweb.mtu.edu/owassb/bwrkrhst.P_DispAwdAidYear";
 
-const themedURLs = {
+        
+const themedURLs = new Map([
+    // FORMAT: [button id, link, open in new tab (optional, false default)]
+
     // Personal Information Tab Hyperlinks
-    "Update Safety First Alert": "https://www.banweb.mtu.edu/owassb/mtu_safety_first_alert.p_update",
-    "View Addresses": "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypView",
-    "Update Addresses": "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypUpdate",
-    "View Emergency Contacts": "https://www.banweb.mtu.edu/owassb/bwgkoemr.P_ViewEmrgContacts",
-    "Update Emergency Contacts": "https://www.banweb.mtu.edu/owassb/bwgkoemr.P_SelectEmrgContacts",
-    "Update Ethnicity": "https://www.banweb.mtu.edu/owassb/mtu_ethnicity_update.p_review_current",
-    "Update Marital Status": "https://www.banweb.mtu.edu/owassb/bwgkomar.P_SelectMtypUpdate",
-    "Answer a Survey": "https://www.banweb.mtu.edu/owassb/bwgksrvy.P_ShowSurveys",
-    "Disability Status": "https://www.banweb.mtu.edu/owassb/bwgkdisb.P_DispDisab",
-    "Update Email Address": "https://www.banweb.mtu.edu/owassb/mtu_email_update.p_show",
-    "Update Preferred First Name": "https://www.banweb.mtu.edu/owassb/mtu_preferred_name.p_show",
-    "Update Job Information": "https://www.banweb.mtu.edu/owassb/mtu_career_ctr_jobo.p_collection",
-    "Veterans Classifications": "https://www.banweb.mtu.edu/owassb/bwgkvets.P_DispClass",
-    "Weapons Registration": "https://www.banweb.mtu.edu/owassb/baninst1.mtu_weapon_reg.p_weapon_reg",
-    "Michigan Tech Payments Form": "https://www.banweb.mtu.edu/owassb/mtu_payments.p_main",
+    ["Update Safety First Alert",   ["mtu_safety_first_alert--p_update___UID0",       "https://www.banweb.mtu.edu/owassb/mtu_safety_first_alert.p_update", true]],
+    ["View Addresses",              ["bwgkogad--P_SelectAtypView___UID1",             "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypView"]],
+    ["Update Addresses",            ["bwgkogad--P_SelectAtypUpdate___UID2",           "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypUpdate"]],
+    ["View Emergency Contacts",     ["bwgkoemr--P_ViewEmrgContacts___UID3",           "https://www.banweb.mtu.edu/owassb/bwgkoemr.P_ViewEmrgContacts"]],
+    ["Update Emergency Contacts",   ["bwgkoemr--P_SelectEmrgContacts___UID4",         "https://www.banweb.mtu.edu/owassb/bwgkoemr.P_SelectEmrgContacts"]],
+    ["Update Ethnicity",            ["mtu_ethnicity_update--p_review_current___UID5", "https://www.banweb.mtu.edu/owassb/mtu_ethnicity_update.p_review_current"]],
+    ["Update Marital Status",       ["bwgkomar--P_SelectMtypUpdate___UID6",           "https://www.banweb.mtu.edu/owassb/bwgkomar.P_SelectMtypUpdate"]],
+    ["Answer a Survey",             ["bwgksrvy--P_ShowSurveys___UID7",                "https://www.banweb.mtu.edu/owassb/bwgksrvy.P_ShowSurveys"]],
+    ["Disability Status",           ["bwgkdisb--P_DispDisab___UID8",                  "https://www.banweb.mtu.edu/owassb/bwgkdisb.P_DispDisab"]],
+    ["Update Email Address",        ["mtu_email_update--p_show___UID9",               "https://www.banweb.mtu.edu/owassb/mtu_email_update.p_show"]],
+    ["Update Preferred First Name", ["mtu_preferred_name--p_show___UID10",            "https://www.banweb.mtu.edu/owassb/mtu_preferred_name.p_show"]],
+    ["Update Job Information",      ["mtu_career_ctr_jobo--p_collection___UID11",     "https://www.banweb.mtu.edu/owassb/mtu_career_ctr_jobo.p_collection"]],
+    ["Veterans Classifications",    ["bwgkvets--P_DispClass___UID12",                 "https://www.banweb.mtu.edu/owassb/bwgkvets.P_DispClass"]],
+    ["Weapons Registration",        ["baninst1--mtu_weapon_reg.p_weapon_reg___UID13", "https://www.banweb.mtu.edu/owassb/baninst1.mtu_weapon_reg.p_weapon_reg"]],
+    ["Michigan Tech Payments Form", ["mtu_payments--p_main___UID14",                  "https://www.banweb.mtu.edu/owassb/mtu_payments.p_main"]],
 
     // Student Tab Hyperlinks
-    "Fraternity/Sorority Release Authorization" : "https://www.banweb.mtu.edu/owassb/mtu_student_release.p_collection",
-    "International Arrival Information": "https://www.banweb.mtu.edu/owassb/mtu_intl_itinerary.p_menu",
-    "VA Enrollment Form": "https://www.banweb.mtu.edu/owassb/va_enrollment_form.display",
+    ["Fraternity/Sorority Release Authorization", ["mtu_student_release--p_collection___UID2", "https://www.banweb.mtu.edu/owassb/mtu_student_release.p_collection"]],
+    ["International Arrival Information",         ["mtu_intl_itinerary--p_menu___UID3",        "https://www.banweb.mtu.edu/owassb/mtu_intl_itinerary.p_menu"]],
+    ["VA Enrollment Form",                        ["va_enrollment_form--display___UID4",       "https://www.banweb.mtu.edu/owassb/va_enrollment_form.display"]],
 
     // Employee Tab Hyperlinks
-    "Time Sheet": "https://www.banweb.mtu.edu/owassb/bwpktais.P_SelectTimeSheetRoll",
-    "Compensation Statement": "https://www.banweb.mtu.edu/owassb/bwpkebst.P_DispIDSelect",
-    "Leave Balances": "https://www.banweb.mtu.edu/owassb/bwpkeinf.P_ViewLeaveBalances",
-    "Update Payroll Direct Deposit": "https://www.banweb.mtu.edu/owassb/bwpkhpay.P_UpdateDirectDeposit",
-    "Non-Payroll Direct Deposits History": "https://www.banweb.mtu.edu/owassb/mtu_employee_direct_deposits.p_gather_message",
-    "Non-Payroll Direct Deposit Destination": "https://www.banweb.mtu.edu/owassb/mtu_direct_refunds.P_ModifyDirectDeposit",
-    "Update Campus Directory": "https://www.banweb.mtu.edu/owassb/cd_addr_update.p_main",
-    "Summary of Current and Future Deductions": "https://www.banweb.mtu.edu/owassb/mtu_benefits_summary.p_main",
-    "Cost Share": "https://www.banweb.mtu.edu/owassb/mtu_cost_share.p_display",
+    ["Time Sheet",                               ["bwpktais--P_SelectTimeSheetRoll___UID0",               "https://www.banweb.mtu.edu/owassb/bwpktais.P_SelectTimeSheetRoll"]],
+    ["Compensation Statement",                   ["bwpkebst--P_DispIDSelect___UID1",                      "https://www.banweb.mtu.edu/owassb/bwpkebst.P_DispIDSelect"]],
+    ["Leave Balances",                           ["bwpkeinf--P_ViewLeaveBalances___UID5",                 "https://www.banweb.mtu.edu/owassb/bwpkeinf.P_ViewLeaveBalances"]],
+    ["Update Payroll Direct Deposit",            ["bwpkhpay--P_UpdateDirectDeposit___UID6",               "https://www.banweb.mtu.edu/owassb/bwpkhpay.P_UpdateDirectDeposit"]],
+    ["Update Campus Directory",                  ["cd_addr_update--p_main___UID9",                        "https://www.banweb.mtu.edu/owassb/cd_addr_update.p_main"]],
+    ["Summary of Current and Future Deductions", ["mtu_benefits_summary--p_main___UID10",                 "https://www.banweb.mtu.edu/owassb/mtu_benefits_summary.p_main"]],
+    ["Cost Share",                               ["mtu_cost_share--p_display___UID0",                     "https://www.banweb.mtu.edu/owassb/mtu_cost_share.p_display"]],
     
     // Guest Tab Hyperlinks
-    "Request Guest Access": "https://www.banweb.mtu.edu/owassb/W4P_SPONSOR.student_sponsor",
-    "Change/View Current Guest(s) Access": "https://www.banweb.mtu.edu/owassb/web4guest.P_AuthPackage",
-    "View Authorization History": "https://www.banweb.mtu.edu/owassb/web4guest.P_ShowAudit",
-    "Update Email Addresses": "https://www.banweb.mtu.edu/owassb/mtu_email_update.p_show",
+    ["Request Guest Access",                ["W4P_SPONSOR--student_sponsor___UID0", "https://www.banweb.mtu.edu/owassb/W4P_SPONSOR.student_sponsor"]],
+    ["Change/View Current Guest(s) Access", ["web4guest--P_AuthPackage___UID1",     "https://www.banweb.mtu.edu/owassb/web4guest.P_AuthPackage"]],
+    ["View Authorization History",          ["web4guest--P_ShowAudit___UID2",       "https://www.banweb.mtu.edu/owassb/web4guest.P_ShowAudit"]],
+    ["Update Email Addresses",              ["mtu_email_update--p_show___UID3",     "https://www.banweb.mtu.edu/owassb/mtu_email_update.p_show"]],
 
     // Payments/Confirm Enrollment Hyperlinks
-    "Michigan Tech Student Bill": "https://www.banweb.mtu.edu/owassb/mtu_webbill.p_viewaccttotal",
-    "Account Summary By Term": "https://www.banweb.mtu.edu/owassb/bwskoacc.P_ViewAcct",
-    "Student Account Detail": "https://www.banweb.mtu.edu/owassb/bzskoacc.P_ViewAcctTotal",
-    "Insurance Payment": "https://www.banweb.mtu.edu/owassb/mtu_misc_payment.p_gather_message",
-    "Enrollment Deposit": "https://www.banweb.mtu.edu/owassb/mtu_enrollment_deposit.p_gather_message",
-    "Parking Tickets Payment": "https://www.banweb.mtu.edu/owassb/mtu_parking_tickets.p_gather_message",
-    "Broomball Registration Payment": "https://www.banweb.mtu.edu/owassb/mtu_broomball.p_gather_message",
-    "Graduate School Fees": "https://www.banweb.mtu.edu/owassb/mtu_binding_fee.p_gather_message",
-    "Anti-Virus": "https://www.banweb.mtu.edu/owassb/mtu_mcafee_payments.p_display",
-    "Direct Deposit Destination": "https://www.banweb.mtu.edu/owassb/mtu_direct_refunds.P_ModifyDirect",
-
-};
+    ["Michigan Tech Student Bill",             ["mtu_webbill--p_viewaccttotal___UID0",                  "https://www.banweb.mtu.edu/owassb/mtu_webbill.p_viewaccttotal"]],
+    ["Account Summary By Term",                ["bwskoacc--P_ViewAcct___UID1",                          "https://www.banweb.mtu.edu/owassb/bwskoacc.P_ViewAcct"]],
+    ["Student Account Detail",                 ["bzskoacc--P_ViewAcctTotal___UID2",                     "https://www.banweb.mtu.edu/owassb/bzskoacc.P_ViewAcctTotal"]],
+    ["Insurance Payment",                      ["mtu_misc_payment--p_gather_message___UID3",            "https://www.banweb.mtu.edu/owassb/mtu_misc_payment.p_gather_message"]],
+    ["Enrollment Deposit",                     ["mtu_enrollment_deposit--p_gather_message___UID4",      "https://www.banweb.mtu.edu/owassb/mtu_enrollment_deposit.p_gather_message"]],
+    ["Parking Tickets Payment",                ["mtu_parking_tickets--p_gather_message___UID5",         "https://www.banweb.mtu.edu/owassb/mtu_parking_tickets.p_gather_message"]],
+    ["Broomball Registration Payment",         ["mtu_broomball--p_gather_message___UID6",               "https://www.banweb.mtu.edu/owassb/mtu_broomball.p_gather_message"]],
+    ["Graduate School Fees",                   ["mtu_binding_fee--p_gather_message___UID7",             "https://www.banweb.mtu.edu/owassb/mtu_binding_fee.p_gather_message"]],
+    ["Anti-Virus",                             ["mtu_mcafee_payments--p_display___UID8",                "https://www.banweb.mtu.edu/owassb/mtu_mcafee_payments.p_display"]],
+    ["Non-Payroll Direct Deposit History",     ["mtu_student_direct_deposits--p_gather_message___UID9", "https://www.banweb.mtu.edu/owassb/mtu_employee_direct_deposits.p_gather_message"]],
+    ["Non-Payroll Direct Deposit Destination", ["mtu_direct_refunds--P_ModifyDirectDeposit___UID10",    "https://www.banweb.mtu.edu/owassb/mtu_direct_refunds.P_ModifyDirectDeposit"]],
+]);
 
 const dropdownItemLinks = {
     // Registration Dropdown
@@ -506,74 +507,31 @@ function stripEventsFromButtons() {
         // replace the original table element with the new one
         orig_table_elem.parentNode.replaceChild(new_table_elem, orig_table_elem);
 
-
-
-        
-
-
-      // Map button IDs to URLs
-      const urlMap = {
-        // Personal Information Tab
-        "bwgkogad--P_SelectAtypView___UID1": themedURLs["View Addresses"],
-        "bwgkogad--P_SelectAtypUpdate___UID2": themedURLs["Update Addresses"],
-        "bwgkoemr--P_ViewEmrgContacts___UID3": themedURLs["View Emergency Contacts"],
-        "bwgkoemr--P_SelectEmrgContacts___UID4": themedURLs["Update Emergency Contacts"],
-        "mtu_ethnicity_update--p_review_current___UID5": themedURLs["Update Ethnicity"],
-        "bwgkomar--P_SelectMtypUpdate___UID6": themedURLs["Update Marital Status"],
-        "bwgksrvy--P_ShowSurveys___UID7": themedURLs["Answer a Survey"],
-        "bwgkdisb--P_DispDisab___UID8": themedURLs["Disability Status"],
-        "mtu_email_update--p_show___UID9": themedURLs["Update Email Address"],
-        "mtu_preferred_name--p_show___UID10": themedURLs["Update Preferred First Name"],
-        "mtu_career_ctr_jobo--p_collection___UID11": themedURLs["Update Job Information"],
-        "bwgkvets--P_DispClass___UID12": themedURLs["Veterans Classifications"],
-        "baninst1--mtu_weapon_reg.p_weapon_reg___UID13": themedURLs["Weapons Registration"],
-        "mtu_payments--p_main___UID14": themedURLs["Michigan Tech Payments Form"],
-
-        // Student Tab
-        "mtu_student_release--p_collection___UID2": themedURLs["Fraternity/Sorority Release Authorization"],
-        "mtu_intl_itinerary--p_menu___UID3": themedURLs["International Arrival Information"],
-        "va_enrollment_form--display___UID4": themedURLs["VA Enrollment Form"],
-        
-        // Employee Tab
-        "bwpktais--P_SelectTimeSheetRoll___UID0": themedURLs["Time Sheet"],
-        "bwpkebst--P_DispIDSelect___UID1": themedURLs["Compensation Statement"],
-        "bwpkeinf--P_ViewLeaveBalances___UID5": themedURLs["Leave Balances"],
-        "bwpkhpay--P_UpdateDirectDeposit___UID6": themedURLs["Update Payroll Direct Deposit"],
-        "cd_addr_update--p_main___UID9": themedURLs["Update Campus Directory"],
-        "mtu_benefits_summary--p_main___UID10": themedURLs["Summary of Current and Future Deductions"],
-        "mtu_cost_share--p_display___UID0": themedURLs["Cost Share"],
-
-        // Guest Tab
-        "W4P_SPONSOR--student_sponsor___UID0": themedURLs["Request Guest Access"],
-        "web4guest--P_AuthPackage___UID1": themedURLs["Change/View Current Guest(s) Access"],
-        "web4guest--P_ShowAudit___UID2": themedURLs["View Authorization History"],
-        "mtu_email_update--p_show___UID3": themedURLs["Update Email Addresses"],
-
-        // Payments/Confirm Enrollment Tab
-        "mtu_webbill--p_viewaccttotal___UID0": themedURLs["Michigan Tech Student Bill"],
-        "bwskoacc--P_ViewAcct___UID1": themedURLs["Account Summary By Term"],
-        "bzskoacc--P_ViewAcctTotal___UID2": themedURLs["Student Account Detail"],
-        "mtu_misc_payment--p_gather_message___UID3": themedURLs["Insurance Payment"],
-        "mtu_enrollment_deposit--p_gather_message___UID4": themedURLs["Enrollment Deposit"],
-        "mtu_parking_tickets--p_gather_message___UID5": themedURLs["Parking Tickets Payment"],
-        "mtu_broomball--p_gather_message___UID6": themedURLs["Broomball Registration Payment"],
-        "mtu_binding_fee--p_gather_message___UID7": themedURLs["Graduate School Fees"],
-        "mtu_mcafee_payments--p_display___UID8": themedURLs["Anti-Virus"],
-        "mtu_student_direct_deposits--p_gather_message___UID9": themedURLs["Non-Payroll Direct Deposit History"],
-        "mtu_direct_refunds--P_ModifyDirectDeposit___UID10": themedURLs["Non-Payroll Direct Deposit Destination"]
-
-    };
-
-    const url = urlMap[new_table_elem.id];
-    console.log("URL: " + new_table_elem.id);
-        if (url) {
+        const url = [...themedURLs.values()].find(x => x instanceof Array && x.length > 1 && x[0] == new_table_elem.id);
+        console.log("URL: " + new_table_elem.id);
+        if (url != undefined) {
             new_table_elem.addEventListener('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                loadPageWithCookies(url);
+                if (url.length >= 3 && url[2]) {
+                    const a = document.createElement("a");
+                    a.href = url[1];
+                    a.target = "_blank";
+                    a.click();
+                    a = null;
+                } else {
+                    loadPageWithCookies(url[1]);
+                }
             });
         }
     });
+
+    const orphans = [...themedURLs.entries()].filter(x => x[1].length <= 1);
+    for (const o of orphans) {
+        console.warn(
+            "WARNING: orphan in themedURLs (pageLoadOverride.js)\nKey: '" + o[0] + "', Values: ["
+            + o[1].map(x => (typeof x === "string") ? ('"' + x + '"') : x.toString()).join(", ") + "]");
+    }
 }
 
 function setup(){
