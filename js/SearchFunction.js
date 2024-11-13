@@ -1,7 +1,7 @@
-const searchList [
-  //{link:"https://www.banweb.mtu.edu/owassb/mtu_safety_first_alert.p_update"},
-  //{link: "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypView"},
-  //{link: "https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypUpdate"},
+const searchList = [
+  {link:'https://www.banweb.mtu.edu/owassb/mtu_safety_first_alert.p_update'},
+  {link: 'https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypView'},
+  {link: 'https://www.banweb.mtu.edu/owassb/bwgkogad.P_SelectAtypUpdate'},
   ]
 
 
@@ -27,7 +27,7 @@ const clearButton = document.getElementById('clear');
 
 clearButton.addEventListener("click", (e) => {
   clearList();
-}
+})
 
 
 function setList(results){
@@ -55,7 +55,7 @@ function clearList(){
   while (list.firstChild){
       list.removeChild(list.firstChild);
   }
-})
+}
 
 function noResults(){
   // create an element for the error; a list item ("li")
