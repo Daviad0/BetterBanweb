@@ -617,3 +617,11 @@ th.ddlabel{
     padding: 10px;
     margin: 10px;
 }
+
+.searchInput ac_input{
+    border: 1px solid #ffcd00;
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 5px;
+}
