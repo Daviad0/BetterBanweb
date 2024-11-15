@@ -599,6 +599,20 @@ iframe{
     border:none;
 }
 
+.current-page .clear-button {
+    display: inline-block;
+    background-color: white;
+    font-weight: bold;
+    font-size: 15px;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    border:none;
+}
+
 td.delabel{
     border-radius: 10px;
     display: flex;

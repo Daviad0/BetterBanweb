@@ -566,6 +566,7 @@ function updateCurrentPage(submenu, content){
 
 let pageElement = document.createElement('div');
 pageElement.innerHTML = `
+<button type = "button" class = "clear-button"> Clear </button>
 <span style="font-weight:600" id="submenu-title">Welcome to Banweb</span>
 <span id="content-title"></span>
 `
