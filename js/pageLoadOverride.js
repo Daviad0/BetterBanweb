@@ -464,7 +464,7 @@ function stripEventsFromButtons() {
                 if (url.length >= 3 && url[2]) {
                     const a = document.createElement("a");
                     a.href = url[1];
-                    a.target = "_blank";
+                    a.setAttribute("target", "_blank");
                     a.click();
                     a = null;
                 } else {
