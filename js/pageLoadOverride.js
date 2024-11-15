@@ -567,11 +567,19 @@ function updateCurrentPage(submenu, content){
 
 let pageElement = document.createElement('div');
 pageElement.innerHTML = `
+<button type = "button" class = "clear-button"> Clear </button>
 <span style="font-weight:600" id="submenu-title">Welcome to Banweb</span>
 <span id="content-title"></span>
 `
 pageElement.classList.add('current-page');
 document.body.prepend(pageElement);
+
+//Creation of the search Bar
+const searchField = document.getElementById("searchField");
+searchField.innerHTML = `
+<input class= "searchInput ac_input" type= "text" value= "Search..." autocomplete= "on">
+`
+
 
 
 setTimeout(setup, 1000);

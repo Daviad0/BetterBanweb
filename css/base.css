@@ -617,3 +617,29 @@ th.ddlabel{
     padding: 10px;
     margin: 10px;
 }
+
+#searchField {
+    border: 1px solid #ffcd00;
+    width: 100px;
+    height: 50px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.current-page .clear-button {
+    display: inline-block;
+    background-color: white;
+    font-weight: bold;
+    font-size: 15px;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    border:none;
+}
