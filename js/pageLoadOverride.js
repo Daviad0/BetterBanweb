@@ -464,7 +464,7 @@ function stripEventsFromButtons() {
                 if (url.length >= 3 && url[2]) {
                     const a = document.createElement("a");
                     a.href = url[1];
-                    a.target = "_blank";
+                    a.setAttribute("target", "_blank");
                     a.click();
                     a = null;
                 } else {
@@ -572,6 +572,13 @@ pageElement.innerHTML = `
 `
 pageElement.classList.add('current-page');
 document.body.prepend(pageElement);
+
+//Creation of the search Bar
+const searchField = document.getElementById("searchField");
+searchField.innerHTML = `
+<input class= "searchInput ac_input" type= "text" value= "Search..." autocomplete= "on">
+`
+
 
 
 setTimeout(setup, 1000);
