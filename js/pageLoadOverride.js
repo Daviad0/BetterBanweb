@@ -290,10 +290,14 @@ function switchContent(view){
         document.getElementById('contentHolder').style.display = 'none';
         document.getElementById('contentSubHolder').style.display = 'block';
         document.getElementById('loading').style.display = 'none';
-    }else{
+    }else if(view == "loading"){
         document.getElementById('contentHolder').style.display = 'none';
         document.getElementById('contentSubHolder').style.display = 'none';
         document.getElementById('loading').style.display = 'block';
+    }else if(view == "none"){
+        document.getElementById('contentHolder').style.display = 'none';
+        document.getElementById('contentSubHolder').style.display = 'none';
+        document.getElementById('loading').style.display = 'none';
     }
 }
 
@@ -610,6 +614,11 @@ pageElement.innerHTML = `
 `
 pageElement.classList.add('current-page');
 document.body.prepend(pageElement);
+
+document.querySelector('.clear-button').addEventListener('click', function(e){
+    switchContent("none");
+    updateCurrentPage("Welcome to Banweb", "");
+});
 
 //Creation of the search Bar
 const searchField = document.getElementById("searchField");
