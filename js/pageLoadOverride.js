@@ -10,6 +10,8 @@ let avoidRemoveClickEvents = [
     'pmenu--P_SafetyMenu___UID11'
 ];
 
+var userData = {};
+
 let financialAidLinks = "https://www.banweb.mtu.edu/owassb/bwrkrhst.P_DispAwdAidYear";
 
         
@@ -183,6 +185,9 @@ function setClickEventsOnDropdownItem(){
     console.log("Setting click events on dropdown items");
     let dropdownItems = Array.from(document.querySelectorAll("#level3Container a"));
     dropdownItems.forEach((item) => {
+
+        item.style.backgroundColor = "red";
+
         console.log("Replacing"); 
         // replace item to remove click events
 
@@ -199,6 +204,20 @@ function setClickEventsOnDropdownItem(){
         });
     });
 
+}
+
+function isDifferentUrl(url){
+    // check if URL does not lead to banweb
+
+    if(url.includes("banweb.mtu.edu")){
+        return false;
+    }
+
+    if(url.includes("http")){
+        return true;
+    }
+
+    return false;
 }
 
 function loadPageWithCookies(url){
@@ -244,7 +263,7 @@ function loadPageWithCookies(url){
                 loadLock = false;
             }
 
-            setTimeout(onlyTakeContentHolder, 1000);
+            setTimeout(onlyTakeContentHolder, 500);
         }catch(e){
             switchContent("base");
         }
@@ -370,6 +389,11 @@ function checkForFormGetOrPost(){
 
     links.forEach((link) => {
 
+        if(link.getAttribute('href') != "" && link.getAttribute('href') != undefined && isDifferentUrl(link.getAttribute('href'))){
+            link.target = "_blank";
+            return;
+        }
+
         let newLink = link.cloneNode(true);
 
         link.parentNode.replaceChild(newLink, link);
@@ -482,6 +506,38 @@ function stripEventsFromButtons() {
     }
 }
 
+function setupUserData(){
+    // Create the account element
+    let accountElement = document.createElement('div');
+    accountElement.innerHTML = `
+        Currently Logged in as <span class="name">${userData.givenName} ${userData.sn} (${userData.uid})</span>
+        <input type="button" id="logout" class="logout" value="Log out">
+    `;
+
+    // Add a class to style the element
+    accountElement.classList.add('current-account');
+
+    // Prepend the element to the body of the page
+    document.body.prepend(accountElement);
+
+
+    document.getElementById('logout').addEventListener('click', function(e){
+
+        // remove all cookies
+    
+        document.cookie.split(";").forEach(function(c) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
+    
+        e.preventDefault();
+        e.stopPropagation();
+        window.location = 'https://sso.mtu.edu/cas/logout';
+    });
+    
+
+
+}
+
 function setup(){
 
 
@@ -503,9 +559,11 @@ function setup(){
     switchContent("base");
 
   // Add event listeners to buttons for themed pages
-    setTimeout(stripEventsFromButtons, 1000);
+    setTimeout(stripEventsFromButtons, 500);
 
+    setClickEventsOnDropdownItem();
 
+    loadSSOPage();
 }
 
 Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButton) => {
@@ -513,7 +571,7 @@ Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButto
 
         updateCurrentPage(baseButton.querySelector('span').innerText, "");
 
-        setTimeout(stripEventsFromButtons, 1000);
+        setTimeout(stripEventsFromButtons, 500);
         switchContent("base");
     });
 });
@@ -529,31 +587,10 @@ newElem.addEventListener('click', function(e){
     loadPageWithCookies(financialAidLinks);
 });
 
-// Create the account element
-let accountElement = document.createElement('div');
-accountElement.innerHTML = `
-    Currently Logged in as <span class="name">username</span>
-    <input type="button" id="logout" class="logout" value="Log out">
-`;
 
-// Add a class to style the element
-accountElement.classList.add('current-account');
 
-// Prepend the element to the body of the page
-document.body.prepend(accountElement);
 
-document.getElementById('logout').addEventListener('click', function(e){
 
-    // remove all cookies
-
-    document.cookie.split(";").forEach(function(c) {
-        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-    });
-
-    e.preventDefault();
-    e.stopPropagation();
-    window.location = 'https://sso.mtu.edu/cas/logout';
-});
 
 function updateCurrentPage(submenu, content){
     if(submenu){
@@ -572,5 +609,61 @@ pageElement.innerHTML = `
 pageElement.classList.add('current-page');
 document.body.prepend(pageElement);
 
+async function loadSSOPage(){
+
+
+    console.log("Trying to get data from settings");
+
+    let existingData = await getData("userData");
+
+    if(existingData){
+        userData = existingData;
+        setupUserData();
+        return;
+    }
+
+
+    console.log("Getting data from background script")
+    let res = browser.runtime.sendMessage("getUserData");
+    res.then((data) => {
+        let htmlString = data.string;
+        let parser = new DOMParser();
+        let doc = parser.parseFromString(htmlString, 'text/html');
+
+        console.log(doc);
+        parseData(doc);
+    });
+
+    
+}
+
+
+function parseData(pageDom){
+    let tableToParse = pageDom.querySelector("#attributesTable");
+
+    let userId = {};
+
+    let rowsToParse = tableToParse.querySelectorAll("tr.mdc-data-table__row");
+    Array.from(rowsToParse).forEach(row => {
+        let col1 = row.querySelectorAll("td")[0];
+        let col2 = row.querySelectorAll("td")[1];
+
+        let key = col1.querySelector("kbd").innerText;
+        let value = col2.querySelector("kbd").innerText;
+
+        value = value.substring(1, value.length - 1);
+
+        userId[key] = value;
+    });
+
+    console.log(userId);
+
+    saveData("userData", userId);
+
+    userData = userId;
+
+    setupUserData();
+
+}
 
 setTimeout(setup, 1000);

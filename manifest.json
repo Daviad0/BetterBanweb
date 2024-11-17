@@ -23,12 +23,16 @@
         "popup/home.css",
         "resources/fonts/Lato-Regular.ttf",
         "resources/images/MTU_LOGO.png",
-        "resources/images/arrow_drop_down.svg"
+        "resources/images/arrow_drop_down.svg",
+        "*://*.sso.mtu.edu/*"
       ]
     }
   ],
   "content_security_policy": {
-    "extension_pages": "default-src 'self'"
+    "extension_pages": "default-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; font-src 'self';"
+  },
+  "background": {
+    "scripts": ["js/background.js"]
   },
   "content_scripts": [
     {

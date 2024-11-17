@@ -102,4 +102,3 @@ if(errorMessage){
 }
 
 document.querySelector('input[type="submit"]').value = "Login";
-
