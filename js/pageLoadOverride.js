@@ -29,8 +29,8 @@ const themedURLs = new Map([
     ["Answer a Survey",             ["bwgksrvy--P_ShowSurveys___UID7",                "https://www.banweb.mtu.edu/owassb/bwgksrvy.P_ShowSurveys"]],
     ["Disability Status",           ["bwgkdisb--P_DispDisab___UID8",                  "https://www.banweb.mtu.edu/owassb/bwgkdisb.P_DispDisab"]],
     ["Update Email Address",        ["mtu_email_update--p_show___UID9",               "https://www.banweb.mtu.edu/owassb/mtu_email_update.p_show"]],
-    ["Update Preferred First Name", ["mtu_preferred_name--p_show___UID10",            "https://www.banweb.mtu.edu/owassb/mtu_preferred_name.p_show"]],
-    ["Update Job Information",      ["mtu_career_ctr_jobo--p_collection___UID11",     "https://www.banweb.mtu.edu/owassb/mtu_career_ctr_jobo.p_collection"]],
+    ["Update Preferred First Name", ["mtu_preferred_name--p_show___UID10",            "https://apps.mtu.edu/selfservice/pronoun/", true]],
+    ["Update Job Information",      ["mtu_career_ctr_jobo--p_collection___UID11",     "https://mtu.joinhandshake.com/login", true]],
     ["Veterans Classifications",    ["bwgkvets--P_DispClass___UID12",                 "https://www.banweb.mtu.edu/owassb/bwgkvets.P_DispClass"]],
     ["Weapons Registration",        ["baninst1--mtu_weapon_reg.p_weapon_reg___UID13", "https://www.banweb.mtu.edu/owassb/baninst1.mtu_weapon_reg.p_weapon_reg"]],
     ["Michigan Tech Payments Form", ["mtu_payments--p_main___UID14",                  "https://www.banweb.mtu.edu/owassb/mtu_payments.p_main"]],
@@ -480,7 +480,6 @@ function stripEventsFromButtons() {
         orig_table_elem.parentNode.replaceChild(new_table_elem, orig_table_elem);
 
         const url = [...themedURLs.values()].find(x => x instanceof Array && x.length > 1 && x[0] == new_table_elem.id);
-        console.log("URL: " + new_table_elem.id);
         if (url != undefined) {
             new_table_elem.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -488,13 +487,15 @@ function stripEventsFromButtons() {
                 if (url.length >= 3 && url[2]) {
                     const a = document.createElement("a");
                     a.href = url[1];
-                    a.target = "_blank";
+                    a.setAttribute("target", "_blank");
                     a.click();
                     a = null;
                 } else {
                     loadPageWithCookies(url[1]);
                 }
             });
+        } else {
+            console.warn("WARNING: could not find URL for element '" + new_table_elem.id + "'!");
         }
     });
 
@@ -603,11 +604,19 @@ function updateCurrentPage(submenu, content){
 
 let pageElement = document.createElement('div');
 pageElement.innerHTML = `
+<button type = "button" class = "clear-button"> Clear </button>
 <span style="font-weight:600" id="submenu-title">Welcome to Banweb</span>
 <span id="content-title"></span>
 `
 pageElement.classList.add('current-page');
 document.body.prepend(pageElement);
+
+//Creation of the search Bar
+const searchField = document.getElementById("searchField");
+searchField.innerHTML = `
+<input class= "searchInput ac_input" type= "text" value= "Search..." autocomplete= "on">
+`
+
 
 async function loadSSOPage(){
 
