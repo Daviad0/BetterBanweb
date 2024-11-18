@@ -619,15 +619,18 @@ th.ddlabel{
 }
 
 #searchField {
-    border: 1px solid #ffcd00;
-    width: 100px;
-    height: 50px;
+    border: 3px solid #ffcd00;
+    display: inline-block;
     padding: 10px 10px;
-    border-radius: 5px;
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    border-radius: 15px;
+    position: relative;
+    width: 300px;
+    height: 50px;
+}
+
+#search{
+    position: relative;
+    left: -600px;
 }
 
 .current-page .clear-button {

@@ -621,10 +621,11 @@ document.querySelector('.clear-button').addEventListener('click', function(e){
 });
 
 //Creation of the search Bar
-const searchField = document.getElementById("searchField");
-searchField.innerHTML = `
-<input class= "searchInput ac_input" type= "text" value= "Search..." autocomplete= "on">
-`
+const searchField = document.getElementById("searchField").querySelector("input");
+searchField.value = "Search...";
+searchField.autocomplete = "on";
+
+const search = document.getElementById("search");
 
 
 async function loadSSOPage(){
