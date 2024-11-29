@@ -646,3 +646,22 @@ th.ddlabel{
     margin-right: 10px;
     border:none;
 }
+
+.current-page .pin-button {
+    display: inline-block;
+    background-color: white;
+    font-weight: bold;
+    font-size: 15px;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    border:none;
+}
+
+.current-page .pin-button:disabled {
+    cursor: not-allowed;
+    filter: opacity(0.7);
+}

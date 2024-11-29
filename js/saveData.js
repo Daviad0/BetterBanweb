@@ -1,6 +1,5 @@
 // Function to save data to local storage
 function saveData(key, value) {
-  let browser = window.chrome ?? window.browser;
 
   let prom = new Promise((resolve, reject) => {
     const data = {};

@@ -14,7 +14,21 @@ var userData = {};
 
 let financialAidLinks = "https://www.banweb.mtu.edu/owassb/bwrkrhst.P_DispAwdAidYear";
 
-        
+let currentEnvironment = {
+    name: "",
+    link: "",
+    allowed: false
+}
+
+let pinnedOptions = [];
+
+getData('pinnedData').then(data => {
+    if(data){
+        pinnedOptions = data;
+    }
+    reloadPinnedOptions();
+})
+
 const themedURLs = new Map([
     // FORMAT: [button id, link, open in new tab (optional, false default)]
 
@@ -240,6 +254,8 @@ function loadPageWithCookies(url){
     loadLock = true;
     contentHolder.style.display = 'none';
 
+    
+
     fetch(url, {
         credentials: 'include'
     }).then(response => {
@@ -251,11 +267,25 @@ function loadPageWithCookies(url){
             let doc = parser.parseFromString(data, 'text/html');
 
             contentHolder.innerHTML = data;
+            
 
             let onlyTakeContentHolder = () => {
                 let innerContentHolder = contentHolder.querySelector('.pagebodydiv');
                 if(innerContentHolder){
                     contentHolder.innerHTML = innerContentHolder.innerHTML;
+                }
+
+                currentEnvironment['name'] = "Testing";
+                currentEnvironment['link'] = url;
+                currentEnvironment['allowed'] = true;
+
+                document.querySelector('.pin-button').disabled = false;
+
+                let existingPinned = pinnedOptions.find(p => p.name == currentEnvironment.name);
+                if(existingPinned){
+                    document.querySelector('.pin-button').innerHTML = "Unpin";
+                }else{
+                    document.querySelector('.pin-button').innerHTML = "Pin";
                 }
 
                 switchContent("sub");
@@ -299,6 +329,32 @@ function switchContent(view){
         document.getElementById('contentSubHolder').style.display = 'none';
         document.getElementById('loading').style.display = 'none';
     }
+}
+
+function reloadPinnedOptions(){
+    let pinDiv = document.getElementById('menuTrackInst');
+
+    let alreadyPinnedOptions = pinDiv.querySelectorAll('.pinned');
+    // remove all pinned options
+    alreadyPinnedOptions.forEach((option) => {
+        option.remove();
+    });
+
+    pinnedOptions.forEach((option) => {
+        let newOption = document.createElement('span');
+        newOption.classList.add('pinned');
+        newOption.classList.add('menuitem');
+        newOption.innerHTML = `
+        <button type="button" value="null" class="htmlButton menubaseButton"><div class="menu" style="background-position: 0px 0px;"><div style="background-position: right 0px;"><span style="background-position: 0px -103px;">${option.name}</span></div></div></button><div class="descriptionText" style="width: 150px; cursor: default;"></div>
+        `
+
+        newOption.addEventListener('click', function(e){
+            loadPageWithCookies(option.link);
+        });
+
+        pinDiv.appendChild(newOption);
+    });
+
 }
 
 function checkForFormGetOrPost(){
@@ -412,6 +468,7 @@ function checkForFormGetOrPost(){
         });
     });
 }
+
 
 function stripEventsFromButtons() {
     Array.from(document.getElementsByClassName("htmlButtonLevel2-3")).forEach((orig_table_elem) => {
@@ -576,6 +633,10 @@ Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButto
 
         updateCurrentPage(baseButton.querySelector('span').innerText, "");
 
+        currentEnvironment['allowed'] = false;
+
+        document.querySelector('.pin-button').disabled = false;
+
         setTimeout(stripEventsFromButtons, 500);
         switchContent("base");
     });
@@ -609,6 +670,7 @@ function updateCurrentPage(submenu, content){
 let pageElement = document.createElement('div');
 pageElement.innerHTML = `
 <button type = "button" class = "clear-button"> Clear </button>
+<button type = "button" class = "pin-button"> Pin </button>
 <span style="font-weight:600" id="submenu-title">Welcome to Banweb</span>
 <span id="content-title"></span>
 `
@@ -619,6 +681,23 @@ document.querySelector('.clear-button').addEventListener('click', function(e){
     switchContent("none");
     updateCurrentPage("Welcome to Banweb", "");
 });
+
+document.querySelector('.pin-button').addEventListener('click', function(e){
+    let currentPinOptions = pinnedOptions.find(p => p.name == currentEnvironment.name);
+
+    if(!currentEnvironment.allowed) return;
+
+    if(currentPinOptions){
+        // remove the pin
+        pinnedOptions = pinnedOptions.filter(p => p.name != currentEnvironment.name);
+    }
+    else{
+        pinnedOptions.push(currentEnvironment);
+        
+    }
+    reloadPinnedOptions();
+});
+
 
 //Creation of the search Bar
 const searchField = document.getElementById("searchField").querySelector("input");
