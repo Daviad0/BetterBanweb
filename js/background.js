@@ -2,11 +2,9 @@
 // chrome.storage.local.get/set
 // chrome.storage.sync.get/set
 
-(window.chrome ?? window.browser).runtime.onInstalled.addListener(function() {
+browser.runtime.onInstalled.addListener(function() {
     // Stuff that runs on installation. Can perform global settings initialization here
 });
-
-
 
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -14,15 +12,12 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     // message possible values: "getUserData"
     if(message === "getUserData") {
-        console.log("HELPPPP");
         let promise = new Promise((resolve, reject) => {
         
             // Get user data from storage
             let url = "https://sso.mtu.edu/";
 
-            console.log("HELPPPP");
             // get the content of the page
-        
             let request = new XMLHttpRequest();
             request.open('GET', url, true);
             request.withCredentials = true;
@@ -35,9 +30,6 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
                         string: request.responseText
                     });
 
-                
-
-                    
                     // let form = doc.querySelector('form');
                     // let formData = new FormData(form);
         
@@ -56,20 +48,9 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         
             request.send();
 
-
-        
-    });
-
-    
-
-    console.log("HELPPPP");
-
-    
+        });
     
     }
 
-
     return true;
-    
-
 });

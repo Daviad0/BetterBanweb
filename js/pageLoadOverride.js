@@ -1,3 +1,5 @@
+const LOCKED_URLS = ["/pls/owa/stu_ctg_utils.p_online_all_courses_ug"];
+
 let loadLock = false;
 let showing = "contentHolder";
 // all of the elements that have an expansion to them
@@ -146,6 +148,11 @@ const dropdownItemLinks = {
 
 // This runs after the page content has loaded.
 document.addEventListener('DOMContentLoaded', function () {
+    // DO NOT ALWAYS DO THINGS
+    if (LOCKED_URLS.includes(window.location.pathname)) {
+        return;
+    }
+
     // Find all links in the dropdown and set the data-url attribute dynamically.
     Object.keys(dropdownItemLinks).forEach(name => {
         // Find the link by its text content
@@ -601,10 +608,7 @@ function setupUserData(){
 }
 
 function setup(){
-
-
     // create a div contentSubHolder right below the contentHolder and hide it
-
     let contentSubHolder = document.createElement('div');
     contentSubHolder.id = 'contentSubHolder';
     contentSubHolder.style.display = 'none';
@@ -620,7 +624,7 @@ function setup(){
 
     switchContent("base");
 
-  // Add event listeners to buttons for themed pages
+    // Add event listeners to buttons for themed pages
     setTimeout(stripEventsFromButtons, 500);
 
     setClickEventsOnDropdownItem();
@@ -628,140 +632,144 @@ function setup(){
     loadSSOPage();
 }
 
-Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButton) => {
-    baseButton.addEventListener('click', function (e){
+if (!LOCKED_URLS.includes(window.location.pathname)) {
 
-        updateCurrentPage(baseButton.querySelector('span').innerText, "");
-
-        currentEnvironment['allowed'] = false;
-
-        document.querySelector('.pin-button').disabled = false;
-
-        setTimeout(stripEventsFromButtons, 500);
-        switchContent("base");
+    Array.from(document.getElementsByClassName("menubaseButton")).forEach((baseButton) => {
+        baseButton.addEventListener('click', function (e){
+    
+            updateCurrentPage(baseButton.querySelector('span').innerText, "");
+    
+            currentEnvironment['allowed'] = false;
+    
+            document.querySelector('.pin-button').disabled = false;
+    
+            setTimeout(stripEventsFromButtons, 500);
+            switchContent("base");
+        });
     });
-});
-
-let oldElem = document.getElementById("/owassb/bwrkrhst--P_DispAwdAidYear___UID2")
-// replace element to remove click events
-let newElem = oldElem.cloneNode(true);
-oldElem.parentNode.replaceChild(newElem, oldElem);
-
-newElem.addEventListener('click', function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    loadPageWithCookies(financialAidLinks);
-});
-
-
-
-
-
-
-function updateCurrentPage(submenu, content){
-    if(submenu){
-        document.getElementById("submenu-title").innerHTML = submenu;
+    
+    let oldElem = document.getElementById("/owassb/bwrkrhst--P_DispAwdAidYear___UID2")
+    // replace element to remove click events
+    let newElem = oldElem.cloneNode(true);
+    oldElem.parentNode.replaceChild(newElem, oldElem);
+    
+    newElem.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        loadPageWithCookies(financialAidLinks);
+    });
+    
+    
+    
+    
+    
+    
+    function updateCurrentPage(submenu, content){
+        if(submenu){
+            document.getElementById("submenu-title").innerHTML = submenu;
+        }
+        if(content){
+            document.getElementById("content-title").innerHTML = content;
+        }
     }
-    if(content){
-        document.getElementById("content-title").innerHTML = content;
-    }
-}
-
-let pageElement = document.createElement('div');
-pageElement.innerHTML = `
-<button type = "button" class = "clear-button"> Clear </button>
-<button type = "button" class = "pin-button"> Pin </button>
-<span style="font-weight:600" id="submenu-title">Welcome to Banweb</span>
-<span id="content-title"></span>
-`
-pageElement.classList.add('current-page');
-document.body.prepend(pageElement);
-
-document.querySelector('.clear-button').addEventListener('click', function(e){
-    switchContent("none");
-    updateCurrentPage("Welcome to Banweb", "");
-});
-
-document.querySelector('.pin-button').addEventListener('click', function(e){
-    let currentPinOptions = pinnedOptions.find(p => p.name == currentEnvironment.name);
-
-    if(!currentEnvironment.allowed) return;
-
-    if(currentPinOptions){
-        // remove the pin
-        pinnedOptions = pinnedOptions.filter(p => p.name != currentEnvironment.name);
-    }
-    else{
-        pinnedOptions.push(currentEnvironment);
+    
+    let pageElement = document.createElement('div');
+    pageElement.innerHTML = `
+    <button type = "button" class = "clear-button"> Clear </button>
+    <button type = "button" class = "pin-button"> Pin </button>
+    <span style="font-weight:600" id="submenu-title">Welcome to Banweb</span>
+    <span id="content-title"></span>
+    `
+    pageElement.classList.add('current-page');
+    document.body.prepend(pageElement);
+    
+    document.querySelector('.clear-button').addEventListener('click', function(e){
+        switchContent("none");
+        updateCurrentPage("Welcome to Banweb", "");
+    });
+    
+    document.querySelector('.pin-button').addEventListener('click', function(e){
+        let currentPinOptions = pinnedOptions.find(p => p.name == currentEnvironment.name);
+    
+        if(!currentEnvironment.allowed) return;
+    
+        if(currentPinOptions){
+            // remove the pin
+            pinnedOptions = pinnedOptions.filter(p => p.name != currentEnvironment.name);
+        }
+        else{
+            pinnedOptions.push(currentEnvironment);
+            
+        }
+        reloadPinnedOptions();
+    });
+    
+    
+    //Creation of the search Bar
+    const searchField = document.getElementById("searchField").querySelector("input");
+    searchField.value = "Search...";
+    searchField.autocomplete = "on";
+    
+    const search = document.getElementById("search");
+    
+    
+    async function loadSSOPage(){
+    
+    
+        console.log("Trying to get data from settings");
+    
+        let existingData = await getData("userData");
+    
+        if(existingData){
+            userData = existingData;
+            setupUserData();
+            return;
+        }
+    
+    
+        console.log("Getting data from background script")
+        let res = browser.runtime.sendMessage("getUserData");
+        res.then((data) => {
+            let htmlString = data.string;
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(htmlString, 'text/html');
+    
+            console.log(doc);
+            parseData(doc);
+        });
+    
         
     }
-    reloadPinnedOptions();
-});
-
-
-//Creation of the search Bar
-const searchField = document.getElementById("searchField").querySelector("input");
-searchField.value = "Search...";
-searchField.autocomplete = "on";
-
-const search = document.getElementById("search");
-
-
-async function loadSSOPage(){
-
-
-    console.log("Trying to get data from settings");
-
-    let existingData = await getData("userData");
-
-    if(existingData){
-        userData = existingData;
+    
+    
+    function parseData(pageDom){
+        let tableToParse = pageDom.querySelector("#attributesTable");
+    
+        let userId = {};
+    
+        let rowsToParse = tableToParse.querySelectorAll("tr.mdc-data-table__row");
+        Array.from(rowsToParse).forEach(row => {
+            let col1 = row.querySelectorAll("td")[0];
+            let col2 = row.querySelectorAll("td")[1];
+    
+            let key = col1.querySelector("kbd").innerText;
+            let value = col2.querySelector("kbd").innerText;
+    
+            value = value.substring(1, value.length - 1);
+    
+            userId[key] = value;
+        });
+    
+        console.log(userId);
+    
+        saveData("userData", userId);
+    
+        userData = userId;
+    
         setupUserData();
-        return;
+    
     }
 
+    setTimeout(setup, 1000);
+}    
 
-    console.log("Getting data from background script")
-    let res = browser.runtime.sendMessage("getUserData");
-    res.then((data) => {
-        let htmlString = data.string;
-        let parser = new DOMParser();
-        let doc = parser.parseFromString(htmlString, 'text/html');
-
-        console.log(doc);
-        parseData(doc);
-    });
-
-    
-}
-
-
-function parseData(pageDom){
-    let tableToParse = pageDom.querySelector("#attributesTable");
-
-    let userId = {};
-
-    let rowsToParse = tableToParse.querySelectorAll("tr.mdc-data-table__row");
-    Array.from(rowsToParse).forEach(row => {
-        let col1 = row.querySelectorAll("td")[0];
-        let col2 = row.querySelectorAll("td")[1];
-
-        let key = col1.querySelector("kbd").innerText;
-        let value = col2.querySelector("kbd").innerText;
-
-        value = value.substring(1, value.length - 1);
-
-        userId[key] = value;
-    });
-
-    console.log(userId);
-
-    saveData("userData", userId);
-
-    userData = userId;
-
-    setupUserData();
-
-}
-
-setTimeout(setup, 1000);

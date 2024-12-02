@@ -30,4 +30,10 @@ function setupTheme(){
     document.body.classList.add("ready");
 }
 
-setupTheme();
+console.log(window.location.pathname);
+if (!LOCKED_URLS.includes(window.location.pathname)) {
+    setupTheme();
+} else {
+    console.log("Locked page, not applying custom CSS");
+    document.body.classList.add("bbnoapply");
+}
