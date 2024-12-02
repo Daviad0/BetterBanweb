@@ -1,15 +1,19 @@
-getData("general_dark-mode").then(result => {
+const LOCKED_URLS = ["/pls/owa/stu_ctg_utils.p_online_all_courses_ug"];
 
-    if(result){
-        document.body.classList.add("dark");
-    }
+if (!LOCKED_URLS.includes(window.location.pathname)) {
+    getData("general_dark-mode").then(result => {
     
-});
-
-document.getElementById("welcomemessage").innerHTML = `
-    <img src="${(browser ?? window.chrome).runtime.getURL("resources/images/MTU_LOGO.png")}" alt="Michigan Tech Logo">
-`;
-
-document.getElementById("menuTrackInst").style.width = "";
-
-// .items a
+        if(result){
+            document.body.classList.add("dark");
+        }
+        
+    });
+    
+    document.getElementById("welcomemessage").innerHTML = `
+        <img src="${(browser ?? window.chrome).runtime.getURL("resources/images/MTU_LOGO.png")}" alt="Michigan Tech Logo">
+    `;
+    
+    document.getElementById("menuTrackInst").style.width = "";
+    
+    // .items a
+}

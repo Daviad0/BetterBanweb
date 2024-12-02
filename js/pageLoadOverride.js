@@ -1,5 +1,3 @@
-const LOCKED_URLS = ["/pls/owa/stu_ctg_utils.p_online_all_courses_ug"];
-
 let loadLock = false;
 let showing = "contentHolder";
 // all of the elements that have an expansion to them
@@ -771,5 +769,15 @@ if (!LOCKED_URLS.includes(window.location.pathname)) {
     }
 
     setTimeout(setup, 1000);
-}    
+} else {
+    console.log("APPLYING FOR " + window.location.pathname);
+    switch (window.location.pathname) {
+        case "/pls/owa/stu_ctg_utils.p_online_all_courses_ug":
+            overrideCourseListPage();
+            break;
+        default:
+            console.warn("Unhandled locked case: " + window.location.pathname);
+            break;
+    }
+}
 
