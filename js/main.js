@@ -1,4 +1,7 @@
-const LOCKED_URLS = ["/pls/owa/stu_ctg_utils.p_online_all_courses_ug"];
+const LOCKED_URLS = [
+    "/pls/owa/stu_ctg_utils.p_online_all_courses_ug",
+    "/pls/owa/stu_ctg_utils.p_online_all_courses_gr",
+];
 
 if (!LOCKED_URLS.includes(window.location.pathname)) {
     getData("general_dark-mode").then(result => {

@@ -773,6 +773,7 @@ if (!LOCKED_URLS.includes(window.location.pathname)) {
     console.log("APPLYING FOR " + window.location.pathname);
     switch (window.location.pathname) {
         case "/pls/owa/stu_ctg_utils.p_online_all_courses_ug":
+        case "/pls/owa/stu_ctg_utils.p_online_all_courses_gr":
             overrideCourseListPage();
             break;
         default:
