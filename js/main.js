@@ -2,6 +2,7 @@ const LOCKED_URLS = [
     "/pls/owa/stu_ctg_utils.p_online_all_courses_ug",
     "/pls/owa/stu_ctg_utils.p_online_all_courses_gr",
     "/pls/owa/stu_ctg_utils.p_final_exam_sched",
+    "/pls/owa/stu_ctg_utils.p_display_exam_groups",
 ];
 
 if (!LOCKED_URLS.includes(window.location.pathname)) {
